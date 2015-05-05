@@ -5,8 +5,9 @@
  */
 package com.kynomics.lib;
 
-
+import com.kynomics.daten.Adresstyp;
 import com.kynomics.daten.Halter;
+import com.kynomics.daten.Halteradresse;
 import com.kynomics.daten.Haltertyp;
 import com.kynomics.daten.Patient;
 import com.kynomics.daten.Rasse;
@@ -20,10 +21,21 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface TransmitterSessionBeanRemote {
+
     public boolean storeEjb();
+
     public List<Haltertyp> initializeHalterTypen();
+
+    public List<Adresstyp> initializeAdressTypen();
+
     public List<Spezies> initializeSpeziesTypen();
+
     public List<Rasse> initializeRasseTypen();
+
     public List<Halter> halterGet();
+
     public List<Patient> patientGet();
+    
+    public List<Halteradresse> halteradresseGet();
+
 }

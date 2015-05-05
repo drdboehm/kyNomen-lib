@@ -53,6 +53,9 @@ public class Halteradresse implements Serializable {
     @Size(max = 45)
     @Column(name = "halter_tel", length = 45)
     private String halterTel;
+    @Size(max = 60)
+    @Column(name = "halter_email", length = 60)
+    private String halterEmail;
     @JoinColumn(name = "halter_id", referencedColumnName = "halter_id")
     @ManyToOne
     private Halter halterId;
@@ -121,6 +124,14 @@ public class Halteradresse implements Serializable {
 
     public void setAdresstypId(Adresstyp adresstypId) {
         this.adresstypId = adresstypId;
+    }
+
+    public String getHalterEmail() {
+        return halterEmail;
+    }
+
+    public void setHalterEmail(String halterEmail) {
+        this.halterEmail = halterEmail;
     }
 
     @Override
