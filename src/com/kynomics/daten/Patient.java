@@ -52,34 +52,44 @@ public class Patient implements Serializable {
     @Basic(optional = false)
     @Column(name = "patient_id", nullable = false)
     private Integer patientId;
+    
     @Size(max = 100)
     @Column(name = "patient_name", length = 100)
     private String patientName;
+    
     @Size(max = 100)
     @Column(name = "patient_ruf", length = 100)
     private String patientRuf;
+    
     @Size(max = 100)
     @Column(name = "patient_chip", length = 100)
     private String patientChip;
+    
     @Column(name = "patient_geb")
     @Temporal(TemporalType.DATE)
     private Date patientGeb;
+    
     @Size(max = 100)
     @Column(name = "patient_zuchtbuchnr", length = 100)
     private String patientZuchtbuchnr;
+    
     @Size(max = 100)
     @Column(name = "patient_tatoonr", length = 100)
     private String patientTatoonr;
+    
     @Column(name = "halter_id")
     private Integer halterId;
+    
     @JoinColumn(name = "patient_id", referencedColumnName = "halter_id", nullable = false, insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Halter halter;
+    
     @JoinColumns({
         @JoinColumn(name = "rasse_rasse_id", referencedColumnName = "rasse_id", nullable = false),
         @JoinColumn(name = "rasse_spezies_id", referencedColumnName = "spezies_id", nullable = false)})
     @ManyToOne(optional = false)
     private Rasse rasse;
+    
     @OneToMany(mappedBy = "patientId")
     private Collection<Auftragposition> auftragpositionCollection;
 

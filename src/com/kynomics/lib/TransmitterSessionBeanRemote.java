@@ -7,6 +7,7 @@ package com.kynomics.lib;
 
 import com.kynomics.daten.Adresstyp;
 import com.kynomics.daten.Halter;
+import com.kynomics.daten.HalterAdresssenPatientWrapper;
 import com.kynomics.daten.Halteradresse;
 import com.kynomics.daten.Haltertyp;
 import com.kynomics.daten.Patient;
@@ -22,7 +23,7 @@ import javax.ejb.Remote;
 @Remote
 public interface TransmitterSessionBeanRemote {
 
-    public boolean storeEjb();
+    public boolean storeEjb(HalterAdresssenPatientWrapper hapw);
 
     public List<Haltertyp> initializeHalterTypen();
 

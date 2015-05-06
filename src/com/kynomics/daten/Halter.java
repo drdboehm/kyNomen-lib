@@ -45,6 +45,7 @@ public class Halter implements Serializable {
     @Basic(optional = false)
     @Column(name = "halter_id", nullable = false)
     private Integer halterId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -54,11 +55,14 @@ public class Halter implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "halter_bemerkung", length = 2147483647)
     private String halterBemerkung;
+    
     @JoinColumn(name = "haltertyp_id", referencedColumnName = "haltertyp_id", nullable = false)
     @ManyToOne(optional = false)
     private Haltertyp haltertypId;
+    
     @OneToMany(mappedBy = "halterId")
     private Collection<Auftrag> auftragCollection;
+    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "halter")
     private Patient patient;
     @OneToMany(mappedBy = "halterId")
