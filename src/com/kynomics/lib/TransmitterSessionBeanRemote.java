@@ -13,6 +13,8 @@ import com.kynomics.daten.Haltertyp;
 import com.kynomics.daten.Patient;
 import com.kynomics.daten.Rasse;
 import com.kynomics.daten.Spezies;
+import com.kynomics.daten.finder.Haltertreffer;
+import com.kynomics.daten.finder.Suchkriterien;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -38,5 +40,7 @@ public interface TransmitterSessionBeanRemote {
     public List<Patient> patientGet();
     
     public List<Halteradresse> halteradresseGet();
+    
+    public List<Haltertreffer> suchen(Suchkriterien kriterien);
 
 }
