@@ -19,8 +19,12 @@ public class Suchkriterien implements Serializable {
 
     public Suchkriterien(Integer halterId, String teilVonHalterName, String teilDerBeschreibung) {
         this.halterId = halterId;
-        this.teilVonHalterName = teilVonHalterName;
-        this.teilDerBeschreibung = teilDerBeschreibung;
+        if (teilVonHalterName.length() != 0) {
+            this.teilVonHalterName = teilVonHalterName;
+        }
+        if (teilDerBeschreibung.length() != 0) {
+            this.teilDerBeschreibung = teilDerBeschreibung;
+        }
     }
 
     /*
@@ -48,11 +52,11 @@ public class Suchkriterien implements Serializable {
             where.or("h.halterId = " + halterId);
         }
 
-        if (teilVonHalterName != null) {
+        if (teilVonHalterName != null && teilVonHalterName.length() != 0) {
             where.or("UPPER(h.halterName) LIKE '%"
                     + teilVonHalterName.toUpperCase() + "%'");
         }
-        if (teilDerBeschreibung != null) {
+        if (teilDerBeschreibung != null && teilDerBeschreibung.length() != 0) {
             where.or("UPPER(h.halterBemerkung) LIKE '%"
                     + teilDerBeschreibung.toUpperCase() + "%'");
         }

@@ -29,6 +29,30 @@ public class Haltertreffer implements Serializable {
         return "Haltertreffer{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + '}';
     }
 
+    public Integer getHalterId() {
+        return halterId;
+    }
+
+    public void setHalterId(Integer halterId) {
+        this.halterId = halterId;
+    }
+
+    public String getHalterName() {
+        return halterName;
+    }
+
+    public void setHalterName(String halterName) {
+        this.halterName = halterName;
+    }
+
+    public String getHalterBemerkung() {
+        return halterBemerkung;
+    }
+
+    public void setHalterBemerkung(String halterBemerkung) {
+        this.halterBemerkung = halterBemerkung;
+    }
+
     
 
     

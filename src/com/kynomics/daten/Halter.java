@@ -48,7 +48,7 @@ public class Halter implements Serializable {
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+//    @Size(min = 1, max = 100)
     @Column(name = "halter_name", nullable = false, length = 100)
     private String halterName;
     @Lob
@@ -160,7 +160,9 @@ public class Halter implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Halter[ halterId=" + halterId + " ]";
+        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", haltertypId=" + haltertypId + ", auftragCollection=" + auftragCollection + ", patient=" + patient + ", halteradresseCollection=" + halteradresseCollection + '}';
     }
+
+    
     
 }
