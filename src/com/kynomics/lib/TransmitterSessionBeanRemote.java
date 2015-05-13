@@ -7,7 +7,7 @@ package com.kynomics.lib;
 
 import com.kynomics.daten.Adresstyp;
 import com.kynomics.daten.Halter;
-import com.kynomics.daten.HalterAdresssenPatientWrapper;
+import com.kynomics.daten.wrapper.HalterAdresssenPatientWrapper;
 import com.kynomics.daten.Halteradresse;
 import com.kynomics.daten.Haltertyp;
 import com.kynomics.daten.Patient;
@@ -41,6 +41,9 @@ public interface TransmitterSessionBeanRemote {
     
     public List<Halteradresse> halteradresseGet();
     
-    public List<Haltertreffer> suchen(Suchkriterien kriterien);
+     public List<Haltertreffer> sucheHalter(Suchkriterien kriterien);
+
+    public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
+
 
 }

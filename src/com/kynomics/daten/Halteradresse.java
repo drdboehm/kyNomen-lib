@@ -41,27 +41,35 @@ public class Halteradresse implements Serializable {
     @Basic(optional = false)
     @Column(name = "halteradresse_id", nullable = false)
     private Integer halteradresseId;
+    
     @Size(max = 45)
     @Column(name = "halter_plz", length = 45)
     private String halterPlz;
+    
     @Size(max = 45)
     @Column(name = "halter_ort", length = 45)
     private String halterOrt;
+    
     @Size(max = 45)
     @Column(name = "halter_strasse", length = 45)
     private String halterStrasse;
+    
     @Size(max = 45)
     @Column(name = "halter_tel", length = 45)
     private String halterTel;
+    
     @Size(max = 60)
     @Column(name = "halter_email", length = 60)
     private String halterEmail;
+    
     @JoinColumn(name = "halter_id", referencedColumnName = "halter_id")
     @ManyToOne
     private Halter halterId;
+    
     @JoinColumn(name = "adresstyp_id", referencedColumnName = "adresstyp_id")
     @ManyToOne
     private Adresstyp adresstypId;
+    
 
     public Halteradresse() {
     }

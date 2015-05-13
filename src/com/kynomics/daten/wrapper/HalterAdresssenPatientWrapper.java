@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kynomics.daten;
+package com.kynomics.daten.wrapper;
 
+import com.kynomics.daten.Halter;
+import com.kynomics.daten.Halteradresse;
+import com.kynomics.daten.Patient;
 import java.io.Serializable;
 
 /**

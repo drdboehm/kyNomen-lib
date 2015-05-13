@@ -46,12 +46,15 @@ public class Auftrag implements Serializable {
     @Basic(optional = false)
     @Column(name = "auftrag_id", nullable = false)
     private Integer auftragId;
+    
     @Column(name = "auftrag_start")
     @Temporal(TemporalType.DATE)
     private Date auftragStart;
+    
     @Column(name = "auftrag_ende")
     @Temporal(TemporalType.DATE)
     private Date auftragEnde;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "auftrag_text", length = 2147483647)
