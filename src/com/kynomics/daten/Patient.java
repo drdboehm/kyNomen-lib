@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -52,44 +51,34 @@ public class Patient implements Serializable {
     @Basic(optional = false)
     @Column(name = "patient_id", nullable = false)
     private Integer patientId;
-    
     @Size(max = 100)
     @Column(name = "patient_name", length = 100)
     private String patientName;
-    
     @Size(max = 100)
     @Column(name = "patient_ruf", length = 100)
     private String patientRuf;
-    
     @Size(max = 100)
     @Column(name = "patient_chip", length = 100)
     private String patientChip;
-    
     @Column(name = "patient_geb")
     @Temporal(TemporalType.DATE)
     private Date patientGeb;
-    
     @Size(max = 100)
     @Column(name = "patient_zuchtbuchnr", length = 100)
     private String patientZuchtbuchnr;
-    
     @Size(max = 100)
     @Column(name = "patient_tatoonr", length = 100)
     private String patientTatoonr;
-    
     @Column(name = "halter_id")
     private Integer halterId;
-    
-    @JoinColumn(name = "patient_id", referencedColumnName = "halter_id", nullable = false, insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Halter halter;
-    
+    @JoinColumn(name = "halter_halter_id", referencedColumnName = "halter_id", nullable = false)
+    @ManyToOne(optional = false)
+    private Halter halterHalterId;
     @JoinColumns({
         @JoinColumn(name = "rasse_rasse_id", referencedColumnName = "rasse_id", nullable = false),
         @JoinColumn(name = "rasse_spezies_id", referencedColumnName = "spezies_id", nullable = false)})
     @ManyToOne(optional = false)
     private Rasse rasse;
-    
     @OneToMany(mappedBy = "patientId")
     private Collection<Auftragposition> auftragpositionCollection;
 
@@ -164,12 +153,12 @@ public class Patient implements Serializable {
         this.halterId = halterId;
     }
 
-    public Halter getHalter() {
-        return halter;
+    public Halter getHalterHalterId() {
+        return halterHalterId;
     }
 
-    public void setHalter(Halter halter) {
-        this.halter = halter;
+    public void setHalterHalterId(Halter halterHalterId) {
+        this.halterHalterId = halterHalterId;
     }
 
     public Rasse getRasse() {
@@ -211,7 +200,8 @@ public class Patient implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Patient[ patientId=" + patientId + " ]";
+        return "Patient{" + "patientId=" + patientId + ", patientName=" + patientName + ", patientRuf=" + patientRuf + ", patientChip=" + patientChip + ", patientGeb=" + patientGeb + ", patientZuchtbuchnr=" + patientZuchtbuchnr + ", patientTatoonr=" + patientTatoonr + ", halterId=" + halterId + ", halterHalterId=" + halterHalterId + ", rasse=" + rasse + ", auftragpositionCollection=" + auftragpositionCollection + '}';
     }
+
     
 }

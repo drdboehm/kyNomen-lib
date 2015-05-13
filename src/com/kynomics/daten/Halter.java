@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -45,26 +44,22 @@ public class Halter implements Serializable {
     @Basic(optional = false)
     @Column(name = "halter_id", nullable = false)
     private Integer halterId;
-    
     @Basic(optional = false)
     @NotNull
-//    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100)
     @Column(name = "halter_name", nullable = false, length = 100)
     private String halterName;
     @Lob
     @Size(max = 2147483647)
     @Column(name = "halter_bemerkung", length = 2147483647)
     private String halterBemerkung;
-    
     @JoinColumn(name = "haltertyp_id", referencedColumnName = "haltertyp_id", nullable = false)
     @ManyToOne(optional = false)
     private Haltertyp haltertypId;
-    
     @OneToMany(mappedBy = "halterId")
     private Collection<Auftrag> auftragCollection;
-    
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "halter")
-    private Patient patient;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "halterHalterId")
+    private Collection<Patient> patientCollection;
     @OneToMany(mappedBy = "halterId")
     private Collection<Halteradresse> halteradresseCollection;
 
@@ -121,12 +116,13 @@ public class Halter implements Serializable {
         this.auftragCollection = auftragCollection;
     }
 
-    public Patient getPatient() {
-        return patient;
+    @XmlTransient
+    public Collection<Patient> getPatientCollection() {
+        return patientCollection;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientCollection(Collection<Patient> patientCollection) {
+        this.patientCollection = patientCollection;
     }
 
     @XmlTransient
@@ -160,9 +156,9 @@ public class Halter implements Serializable {
 
     @Override
     public String toString() {
-        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", haltertypId=" + haltertypId + ", auftragCollection=" + auftragCollection + ", patient=" + patient + ", halteradresseCollection=" + halteradresseCollection + '}';
+        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", haltertypId=" + haltertypId + ", auftragCollection=" + auftragCollection + ", patientCollection=" + patientCollection + ", halteradresseCollection=" + halteradresseCollection + '}';
     }
 
-    
+   
     
 }
