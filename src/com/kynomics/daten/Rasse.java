@@ -7,10 +7,13 @@ package com.kynomics.daten;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -23,46 +26,44 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "rasse", catalog = "kynomics", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rasse.findAll", query = "SELECT r FROM Rasse r"),
-    @NamedQuery(name = "Rasse.findByRasseId", query = "SELECT r FROM Rasse r WHERE r.rassePK.rasseId = :rasseId"),
-    @NamedQuery(name = "Rasse.findByRasseName", query = "SELECT r FROM Rasse r WHERE r.rasseName = :rasseName"),
-    @NamedQuery(name = "Rasse.findBySpeziesId", query = "SELECT r FROM Rasse r WHERE r.rassePK.speziesId = :speziesId")})
+    @NamedQuery(name = "Rasse.findByRasseId", query = "SELECT r FROM Rasse r WHERE r.rasseId = :rasseId"),
+    @NamedQuery(name = "Rasse.findByRasseName", query = "SELECT r FROM Rasse r WHERE r.rasseName = :rasseName")})
 public class Rasse implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected RassePK rassePK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "rasse_id", nullable = false)
+    private Integer rasseId;
     @Size(max = 45)
     @Column(name = "rasse_name", length = 45)
     private String rasseName;
-    @JoinColumn(name = "spezies_id", referencedColumnName = "spezies_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "spezies_spezies_id", referencedColumnName = "spezies_id", nullable = false)
     @ManyToOne(optional = false)
-    private Spezies spezies;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rasse")
+    private Spezies speziesSpeziesId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rasseRasseId")
     private Collection<Patient> patientCollection;
 
     public Rasse() {
     }
 
-    public Rasse(RassePK rassePK) {
-        this.rassePK = rassePK;
+    public Rasse(Integer rasseId) {
+        this.rasseId = rasseId;
     }
 
-    public Rasse(int rasseId, int speziesId) {
-        this.rassePK = new RassePK(rasseId, speziesId);
+    public Integer getRasseId() {
+        return rasseId;
     }
 
-    public RassePK getRassePK() {
-        return rassePK;
-    }
-
-    public void setRassePK(RassePK rassePK) {
-        this.rassePK = rassePK;
+    public void setRasseId(Integer rasseId) {
+        this.rasseId = rasseId;
     }
 
     public String getRasseName() {
@@ -73,12 +74,12 @@ public class Rasse implements Serializable {
         this.rasseName = rasseName;
     }
 
-    public Spezies getSpezies() {
-        return spezies;
+    public Spezies getSpeziesSpeziesId() {
+        return speziesSpeziesId;
     }
 
-    public void setSpezies(Spezies spezies) {
-        this.spezies = spezies;
+    public void setSpeziesSpeziesId(Spezies speziesSpeziesId) {
+        this.speziesSpeziesId = speziesSpeziesId;
     }
 
     @XmlTransient
@@ -93,7 +94,7 @@ public class Rasse implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (rassePK != null ? rassePK.hashCode() : 0);
+        hash += (rasseId != null ? rasseId.hashCode() : 0);
         return hash;
     }
 
@@ -104,7 +105,7 @@ public class Rasse implements Serializable {
             return false;
         }
         Rasse other = (Rasse) object;
-        if ((this.rassePK == null && other.rassePK != null) || (this.rassePK != null && !this.rassePK.equals(other.rassePK))) {
+        if ((this.rasseId == null && other.rasseId != null) || (this.rasseId != null && !this.rasseId.equals(other.rasseId))) {
             return false;
         }
         return true;
@@ -112,7 +113,7 @@ public class Rasse implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Rasse[ rassePK=" + rassePK + " ]";
+        return "com.kynomics.daten.Rasse[ rasseId=" + rasseId + " ]";
     }
     
 }

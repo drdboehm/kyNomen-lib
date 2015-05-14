@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "untersuchungstyp", catalog = "kynomics", schema = "")
@@ -51,10 +51,10 @@ public class Untersuchungstyp implements Serializable {
     @Size(max = 45)
     @Column(name = "untersuchungtyp_mut", length = 45)
     private String untersuchungtypMut;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
-    private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstypUntersuchungtypId")
     private Collection<Untersuchung> untersuchungCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
+    private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
 
     public Untersuchungstyp() {
     }
@@ -96,21 +96,21 @@ public class Untersuchungstyp implements Serializable {
     }
 
     @XmlTransient
-    public Collection<UntersuchungstypMilestone> getUntersuchungstypMilestoneCollection() {
-        return untersuchungstypMilestoneCollection;
-    }
-
-    public void setUntersuchungstypMilestoneCollection(Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection) {
-        this.untersuchungstypMilestoneCollection = untersuchungstypMilestoneCollection;
-    }
-
-    @XmlTransient
     public Collection<Untersuchung> getUntersuchungCollection() {
         return untersuchungCollection;
     }
 
     public void setUntersuchungCollection(Collection<Untersuchung> untersuchungCollection) {
         this.untersuchungCollection = untersuchungCollection;
+    }
+
+    @XmlTransient
+    public Collection<UntersuchungstypMilestone> getUntersuchungstypMilestoneCollection() {
+        return untersuchungstypMilestoneCollection;
+    }
+
+    public void setUntersuchungstypMilestoneCollection(Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection) {
+        this.untersuchungstypMilestoneCollection = untersuchungstypMilestoneCollection;
     }
 
     @Override

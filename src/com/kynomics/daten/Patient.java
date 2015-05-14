@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -29,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "patient", catalog = "kynomics", schema = "")
@@ -42,8 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Patient.findByPatientChip", query = "SELECT p FROM Patient p WHERE p.patientChip = :patientChip"),
     @NamedQuery(name = "Patient.findByPatientGeb", query = "SELECT p FROM Patient p WHERE p.patientGeb = :patientGeb"),
     @NamedQuery(name = "Patient.findByPatientZuchtbuchnr", query = "SELECT p FROM Patient p WHERE p.patientZuchtbuchnr = :patientZuchtbuchnr"),
-    @NamedQuery(name = "Patient.findByPatientTatoonr", query = "SELECT p FROM Patient p WHERE p.patientTatoonr = :patientTatoonr"),
-    @NamedQuery(name = "Patient.findByHalterId", query = "SELECT p FROM Patient p WHERE p.halterId = :halterId")})
+    @NamedQuery(name = "Patient.findByPatientTatoonr", query = "SELECT p FROM Patient p WHERE p.patientTatoonr = :patientTatoonr")})
 public class Patient implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -69,18 +67,14 @@ public class Patient implements Serializable {
     @Size(max = 100)
     @Column(name = "patient_tatoonr", length = 100)
     private String patientTatoonr;
-    @Column(name = "halter_id")
-    private Integer halterId;
+    @OneToMany(mappedBy = "patientId")
+    private Collection<Auftragposition> auftragpositionCollection;
+    @JoinColumn(name = "rasse_rasse_id", referencedColumnName = "rasse_id", nullable = false)
+    @ManyToOne(optional = false)
+    private Rasse rasseRasseId;
     @JoinColumn(name = "halter_halter_id", referencedColumnName = "halter_id", nullable = false)
     @ManyToOne(optional = false)
     private Halter halterHalterId;
-    @JoinColumns({
-        @JoinColumn(name = "rasse_rasse_id", referencedColumnName = "rasse_id", nullable = false),
-        @JoinColumn(name = "rasse_spezies_id", referencedColumnName = "spezies_id", nullable = false)})
-    @ManyToOne(optional = false)
-    private Rasse rasse;
-    @OneToMany(mappedBy = "patientId")
-    private Collection<Auftragposition> auftragpositionCollection;
 
     public Patient() {
     }
@@ -145,12 +139,21 @@ public class Patient implements Serializable {
         this.patientTatoonr = patientTatoonr;
     }
 
-    public Integer getHalterId() {
-        return halterId;
+    @XmlTransient
+    public Collection<Auftragposition> getAuftragpositionCollection() {
+        return auftragpositionCollection;
     }
 
-    public void setHalterId(Integer halterId) {
-        this.halterId = halterId;
+    public void setAuftragpositionCollection(Collection<Auftragposition> auftragpositionCollection) {
+        this.auftragpositionCollection = auftragpositionCollection;
+    }
+
+    public Rasse getRasseRasseId() {
+        return rasseRasseId;
+    }
+
+    public void setRasseRasseId(Rasse rasseRasseId) {
+        this.rasseRasseId = rasseRasseId;
     }
 
     public Halter getHalterHalterId() {
@@ -159,23 +162,6 @@ public class Patient implements Serializable {
 
     public void setHalterHalterId(Halter halterHalterId) {
         this.halterHalterId = halterHalterId;
-    }
-
-    public Rasse getRasse() {
-        return rasse;
-    }
-
-    public void setRasse(Rasse rasse) {
-        this.rasse = rasse;
-    }
-
-    @XmlTransient
-    public Collection<Auftragposition> getAuftragpositionCollection() {
-        return auftragpositionCollection;
-    }
-
-    public void setAuftragpositionCollection(Collection<Auftragposition> auftragpositionCollection) {
-        this.auftragpositionCollection = auftragpositionCollection;
     }
 
     @Override
@@ -200,7 +186,7 @@ public class Patient implements Serializable {
 
     @Override
     public String toString() {
-        return "Patient{" + "patientId=" + patientId + ", patientName=" + patientName + ", patientRuf=" + patientRuf + ", patientChip=" + patientChip + ", patientGeb=" + patientGeb + ", patientZuchtbuchnr=" + patientZuchtbuchnr + ", patientTatoonr=" + patientTatoonr + ", halterId=" + halterId + ", halterHalterId=" + halterHalterId + ", rasse=" + rasse + ", auftragpositionCollection=" + auftragpositionCollection + '}';
+        return "Patient{" + "patientId=" + patientId + ", patientName=" + patientName + ", patientRuf=" + patientRuf + ", patientChip=" + patientChip + ", patientGeb=" + patientGeb + ", patientZuchtbuchnr=" + patientZuchtbuchnr + ", patientTatoonr=" + patientTatoonr + ", auftragpositionCollection=" + auftragpositionCollection + ", rasseRasseId=" + rasseRasseId + ", halterHalterId=" + halterHalterId + '}';
     }
 
     

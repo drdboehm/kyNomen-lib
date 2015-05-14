@@ -1,14 +1,14 @@
 package com.kynomics.daten.finder;
 
 import com.kynomics.daten.Rasse;
+import java.io.Serializable;
 import java.util.Date;
 
- /**
+/**
  *
  * @author teilnehmer
  */
-
-public class Patiententreffer {
+public class Patiententreffer implements Serializable{
 
     private Integer patientId;
     private String patientName;
@@ -18,6 +18,17 @@ public class Patiententreffer {
     private String patientZuchtbuchnr;
     private String patientTatoonr;
     private Rasse rasse;
+
+    public Patiententreffer() {
+    }
+
+    /*
+     only set the constructor with the unique Id attribute, the details can be later 
+    identified by this Id
+     */
+    public Patiententreffer(Integer patientId) {
+        this.patientId = patientId;
+    }
 
     public Integer getPatientId() {
         return patientId;

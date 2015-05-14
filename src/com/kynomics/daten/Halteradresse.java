@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "halteradresse", catalog = "kynomics", schema = "")
@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Halteradresse.findByHalterPlz", query = "SELECT h FROM Halteradresse h WHERE h.halterPlz = :halterPlz"),
     @NamedQuery(name = "Halteradresse.findByHalterOrt", query = "SELECT h FROM Halteradresse h WHERE h.halterOrt = :halterOrt"),
     @NamedQuery(name = "Halteradresse.findByHalterStrasse", query = "SELECT h FROM Halteradresse h WHERE h.halterStrasse = :halterStrasse"),
-    @NamedQuery(name = "Halteradresse.findByHalterTel", query = "SELECT h FROM Halteradresse h WHERE h.halterTel = :halterTel")})
+    @NamedQuery(name = "Halteradresse.findByHalterTel", query = "SELECT h FROM Halteradresse h WHERE h.halterTel = :halterTel"),
+    @NamedQuery(name = "Halteradresse.findByEmail", query = "SELECT h FROM Halteradresse h WHERE h.email = :email")})
 public class Halteradresse implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,35 +42,28 @@ public class Halteradresse implements Serializable {
     @Basic(optional = false)
     @Column(name = "halteradresse_id", nullable = false)
     private Integer halteradresseId;
-    
     @Size(max = 45)
     @Column(name = "halter_plz", length = 45)
     private String halterPlz;
-    
     @Size(max = 45)
     @Column(name = "halter_ort", length = 45)
     private String halterOrt;
-    
     @Size(max = 45)
     @Column(name = "halter_strasse", length = 45)
     private String halterStrasse;
-    
     @Size(max = 45)
     @Column(name = "halter_tel", length = 45)
     private String halterTel;
-    
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 60)
-    @Column(name = "halter_email", length = 60)
-    private String halterEmail;
-    
-    @JoinColumn(name = "halter_id", referencedColumnName = "halter_id")
-    @ManyToOne
-    private Halter halterId;
-    
+    @Column(name = "email", length = 60)
+    private String email;
     @JoinColumn(name = "adresstyp_id", referencedColumnName = "adresstyp_id")
     @ManyToOne
     private Adresstyp adresstypId;
-    
+    @JoinColumn(name = "halter_id", referencedColumnName = "halter_id")
+    @ManyToOne
+    private Halter halterId;
 
     public Halteradresse() {
     }
@@ -118,12 +112,12 @@ public class Halteradresse implements Serializable {
         this.halterTel = halterTel;
     }
 
-    public Halter getHalterId() {
-        return halterId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setHalterId(Halter halterId) {
-        this.halterId = halterId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Adresstyp getAdresstypId() {
@@ -134,12 +128,12 @@ public class Halteradresse implements Serializable {
         this.adresstypId = adresstypId;
     }
 
-    public String getHalterEmail() {
-        return halterEmail;
+    public Halter getHalterId() {
+        return halterId;
     }
 
-    public void setHalterEmail(String halterEmail) {
-        this.halterEmail = halterEmail;
+    public void setHalterId(Halter halterId) {
+        this.halterId = halterId;
     }
 
     @Override

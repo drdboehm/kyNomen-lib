@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "untersuchungstyp_milestone", catalog = "kynomics", schema = "")

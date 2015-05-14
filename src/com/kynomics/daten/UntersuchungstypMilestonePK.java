@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Embeddable
 public class UntersuchungstypMilestonePK implements Serializable {

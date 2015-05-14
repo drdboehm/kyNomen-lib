@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "spezies", catalog = "kynomics", schema = "")
@@ -43,7 +43,7 @@ public class Spezies implements Serializable {
     @Size(max = 45)
     @Column(name = "spezies_name", length = 45)
     private String speziesName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "spezies")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "speziesSpeziesId")
     private Collection<Rasse> rasseCollection;
 
     public Spezies() {

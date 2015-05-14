@@ -6,18 +6,20 @@
 package com.kynomics.daten.finder;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
  * @author teilnehmer
  */
-public class Suchkriterien implements Serializable {
+public class SuchkriterienHalter implements Serializable {
 
     private Integer halterId;
     private String teilVonHalterName;
     private String teilDerBeschreibung;
+    
 
-    public Suchkriterien(Integer halterId, String teilVonHalterName, String teilDerBeschreibung) {
+    public SuchkriterienHalter(Integer halterId, String teilVonHalterName, String teilDerBeschreibung) {
         this.halterId = halterId;
         if (teilVonHalterName.length() != 0) {
             this.teilVonHalterName = teilVonHalterName;
@@ -30,7 +32,7 @@ public class Suchkriterien implements Serializable {
     /*
      default constructor - let attributes be null in case no serach entry
      */
-    public Suchkriterien() {
+    public SuchkriterienHalter() {
     }
 
     public void setHalterId(Integer halterId) {
@@ -45,6 +47,7 @@ public class Suchkriterien implements Serializable {
         this.teilDerBeschreibung = teilDerBeschreibung;
     }
 
+   
     @Override
     public String toString() {
         WhereKlausel where = new WhereKlausel();
@@ -60,6 +63,7 @@ public class Suchkriterien implements Serializable {
             where.or("UPPER(h.halterBemerkung) LIKE '%"
                     + teilDerBeschreibung.toUpperCase() + "%'");
         }
+        
         return where.toString();
     }
 }

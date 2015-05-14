@@ -7,6 +7,7 @@ package com.kynomics.daten;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,13 +19,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "ergebnistyp", catalog = "kynomics", schema = "")
@@ -40,9 +42,9 @@ public class Ergebnistyp implements Serializable {
     @Basic(optional = false)
     @Column(name = "ergebnistyp_id", nullable = false)
     private Integer ergebnistypId;
-    @Size(max = 45)
-    @Column(name = "ergebnistyp_name", length = 45)
-    private String ergebnistypName;
+    @Column(name = "ergebnistyp_name")
+    @Temporal(TemporalType.DATE)
+    private Date ergebnistypName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ergebnistypId")
     private Collection<Ergebnis> ergebnisCollection;
 
@@ -61,11 +63,11 @@ public class Ergebnistyp implements Serializable {
         this.ergebnistypId = ergebnistypId;
     }
 
-    public String getErgebnistypName() {
+    public Date getErgebnistypName() {
         return ergebnistypName;
     }
 
-    public void setErgebnistypName(String ergebnistypName) {
+    public void setErgebnistypName(Date ergebnistypName) {
         this.ergebnistypName = ergebnistypName;
     }
 

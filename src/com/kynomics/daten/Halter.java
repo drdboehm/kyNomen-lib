@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "halter", catalog = "kynomics", schema = "")
@@ -46,22 +46,22 @@ public class Halter implements Serializable {
     private Integer halterId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 0, max = 100)
     @Column(name = "halter_name", nullable = false, length = 100)
     private String halterName;
     @Lob
     @Size(max = 2147483647)
     @Column(name = "halter_bemerkung", length = 2147483647)
     private String halterBemerkung;
+    @OneToMany(mappedBy = "halterId")
+    private Collection<Auftrag> auftragCollection;
+    @OneToMany(mappedBy = "halterId")
+    private Collection<Halteradresse> halteradresseCollection;
     @JoinColumn(name = "haltertyp_id", referencedColumnName = "haltertyp_id", nullable = false)
     @ManyToOne(optional = false)
     private Haltertyp haltertypId;
-    @OneToMany(mappedBy = "halterId")
-    private Collection<Auftrag> auftragCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "halterHalterId")
     private Collection<Patient> patientCollection;
-    @OneToMany(mappedBy = "halterId")
-    private Collection<Halteradresse> halteradresseCollection;
 
     public Halter() {
     }
@@ -99,14 +99,6 @@ public class Halter implements Serializable {
         this.halterBemerkung = halterBemerkung;
     }
 
-    public Haltertyp getHaltertypId() {
-        return haltertypId;
-    }
-
-    public void setHaltertypId(Haltertyp haltertypId) {
-        this.haltertypId = haltertypId;
-    }
-
     @XmlTransient
     public Collection<Auftrag> getAuftragCollection() {
         return auftragCollection;
@@ -117,21 +109,29 @@ public class Halter implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Patient> getPatientCollection() {
-        return patientCollection;
-    }
-
-    public void setPatientCollection(Collection<Patient> patientCollection) {
-        this.patientCollection = patientCollection;
-    }
-
-    @XmlTransient
     public Collection<Halteradresse> getHalteradresseCollection() {
         return halteradresseCollection;
     }
 
     public void setHalteradresseCollection(Collection<Halteradresse> halteradresseCollection) {
         this.halteradresseCollection = halteradresseCollection;
+    }
+
+    public Haltertyp getHaltertypId() {
+        return haltertypId;
+    }
+
+    public void setHaltertypId(Haltertyp haltertypId) {
+        this.haltertypId = haltertypId;
+    }
+
+    @XmlTransient
+    public Collection<Patient> getPatientCollection() {
+        return patientCollection;
+    }
+
+    public void setPatientCollection(Collection<Patient> patientCollection) {
+        this.patientCollection = patientCollection;
     }
 
     @Override
@@ -156,9 +156,7 @@ public class Halter implements Serializable {
 
     @Override
     public String toString() {
-        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", haltertypId=" + haltertypId + ", auftragCollection=" + auftragCollection + ", patientCollection=" + patientCollection + ", halteradresseCollection=" + halteradresseCollection + '}';
+        return "com.kynomics.daten.Halter[ halterId=" + halterId + " ]";
     }
-
-   
     
 }

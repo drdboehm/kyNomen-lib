@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "milestone", catalog = "kynomics", schema = "")
@@ -67,11 +67,11 @@ public class Milestone implements Serializable {
     @Size(max = 45)
     @Column(name = "milestonecost", length = 45)
     private String milestonecost;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "milestone")
-    private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
     @JoinColumn(name = "milestonetyp_id", referencedColumnName = "milestonetyp_id", nullable = false)
     @ManyToOne(optional = false)
     private Milestonetyp milestonetypId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "milestone")
+    private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
 
     public Milestone() {
     }
@@ -136,6 +136,14 @@ public class Milestone implements Serializable {
         this.milestonecost = milestonecost;
     }
 
+    public Milestonetyp getMilestonetypId() {
+        return milestonetypId;
+    }
+
+    public void setMilestonetypId(Milestonetyp milestonetypId) {
+        this.milestonetypId = milestonetypId;
+    }
+
     @XmlTransient
     public Collection<UntersuchungstypMilestone> getUntersuchungstypMilestoneCollection() {
         return untersuchungstypMilestoneCollection;
@@ -143,14 +151,6 @@ public class Milestone implements Serializable {
 
     public void setUntersuchungstypMilestoneCollection(Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection) {
         this.untersuchungstypMilestoneCollection = untersuchungstypMilestoneCollection;
-    }
-
-    public Milestonetyp getMilestonetypId() {
-        return milestonetypId;
-    }
-
-    public void setMilestonetypId(Milestonetyp milestonetypId) {
-        this.milestonetypId = milestonetypId;
     }
 
     @Override

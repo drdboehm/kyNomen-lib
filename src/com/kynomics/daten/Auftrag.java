@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "auftrag", catalog = "kynomics", schema = "")
@@ -46,25 +46,22 @@ public class Auftrag implements Serializable {
     @Basic(optional = false)
     @Column(name = "auftrag_id", nullable = false)
     private Integer auftragId;
-    
     @Column(name = "auftrag_start")
     @Temporal(TemporalType.DATE)
     private Date auftragStart;
-    
     @Column(name = "auftrag_ende")
     @Temporal(TemporalType.DATE)
     private Date auftragEnde;
-    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "auftrag_text", length = 2147483647)
     private String auftragText;
-    @JoinColumn(name = "halter_id", referencedColumnName = "halter_id")
-    @ManyToOne
-    private Halter halterId;
     @JoinColumn(name = "auftragstyp_id", referencedColumnName = "auftragtyp_id")
     @ManyToOne
     private Auftragtyp auftragstypId;
+    @JoinColumn(name = "halter_id", referencedColumnName = "halter_id")
+    @ManyToOne
+    private Halter halterId;
     @OneToMany(mappedBy = "auftragId")
     private Collection<Auftragposition> auftragpositionCollection;
 
@@ -107,20 +104,20 @@ public class Auftrag implements Serializable {
         this.auftragText = auftragText;
     }
 
-    public Halter getHalterId() {
-        return halterId;
-    }
-
-    public void setHalterId(Halter halterId) {
-        this.halterId = halterId;
-    }
-
     public Auftragtyp getAuftragstypId() {
         return auftragstypId;
     }
 
     public void setAuftragstypId(Auftragtyp auftragstypId) {
         this.auftragstypId = auftragstypId;
+    }
+
+    public Halter getHalterId() {
+        return halterId;
+    }
+
+    public void setHalterId(Halter halterId) {
+        this.halterId = halterId;
     }
 
     @XmlTransient

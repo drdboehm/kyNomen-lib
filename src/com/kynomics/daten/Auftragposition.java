@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "auftragposition", catalog = "kynomics", schema = "")
@@ -42,12 +42,12 @@ public class Auftragposition implements Serializable {
     @JoinColumn(name = "patient_id", referencedColumnName = "patient_id")
     @ManyToOne
     private Patient patientId;
-    @JoinColumn(name = "untersuchung_id", referencedColumnName = "untersuchung_id", nullable = false)
-    @ManyToOne(optional = false)
-    private Untersuchung untersuchungId;
     @JoinColumn(name = "auftrag_id", referencedColumnName = "auftrag_id")
     @ManyToOne
     private Auftrag auftragId;
+    @JoinColumn(name = "untersuchung_id", referencedColumnName = "untersuchung_id", nullable = false)
+    @ManyToOne(optional = false)
+    private Untersuchung untersuchungId;
 
     public Auftragposition() {
     }
@@ -80,20 +80,20 @@ public class Auftragposition implements Serializable {
         this.patientId = patientId;
     }
 
-    public Untersuchung getUntersuchungId() {
-        return untersuchungId;
-    }
-
-    public void setUntersuchungId(Untersuchung untersuchungId) {
-        this.untersuchungId = untersuchungId;
-    }
-
     public Auftrag getAuftragId() {
         return auftragId;
     }
 
     public void setAuftragId(Auftrag auftragId) {
         this.auftragId = auftragId;
+    }
+
+    public Untersuchung getUntersuchungId() {
+        return untersuchungId;
+    }
+
+    public void setUntersuchungId(Untersuchung untersuchungId) {
+        this.untersuchungId = untersuchungId;
     }
 
     @Override

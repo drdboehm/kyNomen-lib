@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author teilnehmer
+ * @author dboehm
  */
 @Entity
 @Table(name = "untersuchung", catalog = "kynomics", schema = "")
@@ -52,13 +52,13 @@ public class Untersuchung implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "untersuchung_preis", precision = 22)
     private Double untersuchungPreis;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungId")
+    private Collection<Auftragposition> auftragpositionCollection;
     @JoinColumn(name = "untersuchungstyp_untersuchungtyp_id", referencedColumnName = "untersuchungtyp_id", nullable = false)
     @ManyToOne(optional = false)
     private Untersuchungstyp untersuchungstypUntersuchungtypId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchung")
     private Collection<Ergebnis> ergebnisCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungId")
-    private Collection<Auftragposition> auftragpositionCollection;
 
     public Untersuchung() {
     }
@@ -99,6 +99,15 @@ public class Untersuchung implements Serializable {
         this.untersuchungPreis = untersuchungPreis;
     }
 
+    @XmlTransient
+    public Collection<Auftragposition> getAuftragpositionCollection() {
+        return auftragpositionCollection;
+    }
+
+    public void setAuftragpositionCollection(Collection<Auftragposition> auftragpositionCollection) {
+        this.auftragpositionCollection = auftragpositionCollection;
+    }
+
     public Untersuchungstyp getUntersuchungstypUntersuchungtypId() {
         return untersuchungstypUntersuchungtypId;
     }
@@ -114,15 +123,6 @@ public class Untersuchung implements Serializable {
 
     public void setErgebnisCollection(Collection<Ergebnis> ergebnisCollection) {
         this.ergebnisCollection = ergebnisCollection;
-    }
-
-    @XmlTransient
-    public Collection<Auftragposition> getAuftragpositionCollection() {
-        return auftragpositionCollection;
-    }
-
-    public void setAuftragpositionCollection(Collection<Auftragposition> auftragpositionCollection) {
-        this.auftragpositionCollection = auftragpositionCollection;
     }
 
     @Override
