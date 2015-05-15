@@ -6,7 +6,6 @@
 package com.kynomics.daten.finder;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -15,29 +14,43 @@ import java.util.Date;
 public class SuchkriterienPatient extends Patiententreffer implements Serializable {
 
     /*
-     default constructor - let attributes be null in case no serach entry
+     default constructor - let attributes be null in case no search entry
      */
     public SuchkriterienPatient() {
     }
 
-    
     /*  
-    the getters ans setters are in the family class
+     the getters ans setters are in the family class
      */
     @Override
     public String toString() {
         WhereKlausel where = new WhereKlausel();
-        if (this.getPatientId() != null) {
-            where.or("p.patientId = " + this.getPatientId());
+        if (super.getPatientId() != null) {
+            where.or("p.patientId = " + super.getPatientId());
         }
 
-        if (this.getPatientName() != null && this.getPatientName().length() != 0) {
+        if (super.getPatientName() != null && super.getPatientName().length() != 0) {
             where.or("UPPER(p.patientName) LIKE '%"
-                    + this.getPatientName().toUpperCase() + "%'");
+                    + super.getPatientName().toUpperCase() + "%'");
         }
-        if (this.getPatientRuf() != null && this.getPatientRuf().length() != 0) {
+        if (super.getPatientRuf() != null && super.getPatientRuf().length() != 0) {
             where.or("UPPER(p.patientRuf) LIKE '%"
-                    + this.getPatientRuf().toUpperCase() + "%'");
+                    + super.getPatientRuf().toUpperCase() + "%'");
+        }
+
+        if (super.getPatientChip() != null && super.getPatientChip().length() != 0) {
+            where.or("UPPER(p.patientChip) LIKE '%"
+                    + super.getPatientChip().toUpperCase() + "%'");
+        }
+
+        if (super.getPatientTatoonr() != null && super.getPatientTatoonr().length() != 0) {
+            where.or("UPPER(p.patientTatoonr) LIKE '%"
+                    + super.getPatientTatoonr().toUpperCase() + "%'");
+        }
+
+        if (super.getPatientZuchtbuchnr() != null && super.getPatientZuchtbuchnr().length() != 0) {
+            where.or("UPPER(p.patientZuchtbuchnr) LIKE '%"
+                    + super.getPatientZuchtbuchnr().toUpperCase() + "%'");
         }
         return where.toString();
     }

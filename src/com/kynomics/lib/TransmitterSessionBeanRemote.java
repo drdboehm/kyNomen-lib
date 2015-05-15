@@ -13,9 +13,11 @@ import com.kynomics.daten.Haltertyp;
 import com.kynomics.daten.Patient;
 import com.kynomics.daten.Rasse;
 import com.kynomics.daten.Spezies;
+import com.kynomics.daten.finder.HalteradresseTreffer;
 import com.kynomics.daten.finder.Haltertreffer;
 import com.kynomics.daten.finder.Patiententreffer;
 import com.kynomics.daten.finder.SuchkriterienHalter;
+import com.kynomics.daten.finder.SuchkriterienHalteradresse;
 import com.kynomics.daten.finder.SuchkriterienPatient;
 import java.util.List;
 import javax.ejb.Remote;
@@ -40,17 +42,15 @@ public interface TransmitterSessionBeanRemote {
     public List<Halter> halterGet();
 
     public List<Patient> patientGet();
-    
+
     public List<Halteradresse> halteradresseGet();
-    
-     public List<Haltertreffer> sucheHalter(SuchkriterienHalter kriterien);
-     
-     public List<Patiententreffer> suchePatient(SuchkriterienPatient kriterien);
+
+    public List<Haltertreffer> sucheHalter(SuchkriterienHalter kriterien);
+
+    public List<Patiententreffer> suchePatient(SuchkriterienPatient kriterien);
+
+    public List<HalteradresseTreffer> sucheHalterAdresse(SuchkriterienHalteradresse suchKr);
 
     public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
-
-    
-
-
 
 }

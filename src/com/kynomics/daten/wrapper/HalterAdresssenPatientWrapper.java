@@ -21,6 +21,12 @@ public class HalterAdresssenPatientWrapper implements Serializable {
     private Halteradresse halteradresse;
     private Patient patient;
 
+    public HalterAdresssenPatientWrapper(Halter halter, Halteradresse halteradresse, Patient patient) {
+        this.halter = halter;
+        this.halteradresse = halteradresse;
+        this.patient = patient;
+    }
+
     public Halter getHalter() {
         return halter;
     }

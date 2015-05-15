@@ -158,7 +158,9 @@ public class Halteradresse implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Halteradresse[ halteradresseId=" + halteradresseId + " ]";
+        return "Halteradresse{" + "halteradresseId=" + halteradresseId + ", halterPlz=" + halterPlz + ", halterOrt=" + halterOrt + ", halterStrasse=" + halterStrasse + ", halterTel=" + halterTel + ", email=" + email + ", adresstypId=" + adresstypId + ", halterId=" + halterId + '}';
     }
+
+   
     
 }
