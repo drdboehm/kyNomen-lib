@@ -157,7 +157,11 @@ public class Halter implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Halter[ halterId=" + halterId + " ]";
+        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", haltertypId=" + haltertypId + '}';
     }
+
+    
+
+    
     
 }
