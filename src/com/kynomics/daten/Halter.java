@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,14 +54,14 @@ public class Halter implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "halter_bemerkung", length = 2147483647)
     private String halterBemerkung;
-    @OneToMany(mappedBy = "halterId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "halterId")
     private Collection<Auftrag> auftragCollection;
-    @OneToMany(mappedBy = "halterId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "halterId")
     private Collection<Halteradresse> halteradresseCollection;
     @JoinColumn(name = "haltertyp_id", referencedColumnName = "haltertyp_id", nullable = false)
     @ManyToOne(optional = false)
     private Haltertyp haltertypId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "halterHalterId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "halterHalterId")
     private Collection<Patient> patientCollection;
 
     public Halter() {
