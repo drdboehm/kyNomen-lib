@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -60,6 +61,12 @@ public class Untersuchung implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchung")
     private Collection<Ergebnis> ergebnisCollection;
 
+    /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    public boolean edited;
+    
     public Untersuchung() {
     }
 
@@ -123,6 +130,14 @@ public class Untersuchung implements Serializable {
 
     public void setErgebnisCollection(Collection<Ergebnis> ergebnisCollection) {
         this.ergebnisCollection = ergebnisCollection;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     @Override

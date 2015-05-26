@@ -52,5 +52,7 @@ public interface TransmitterSessionBeanRemote {
     public List<HalteradresseTreffer> sucheHalterAdresse(SuchkriterienHalteradresse suchKr);
 
     public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
+    
+    public <T extends Object> T deleteById(Class<T> entityClass, Integer primaryKey);
 
 }
