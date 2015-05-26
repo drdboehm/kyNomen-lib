@@ -13,6 +13,7 @@ import com.kynomics.daten.Haltertyp;
 import com.kynomics.daten.Patient;
 import com.kynomics.daten.Rasse;
 import com.kynomics.daten.Spezies;
+import com.kynomics.daten.Untersuchungstyp;
 import com.kynomics.daten.finder.HalteradresseTreffer;
 import com.kynomics.daten.finder.Haltertreffer;
 import com.kynomics.daten.finder.Patiententreffer;
@@ -38,6 +39,8 @@ public interface TransmitterSessionBeanRemote {
     public List<Spezies> initializeSpeziesTypen();
 
     public List<Rasse> initializeRasseTypen();
+    
+    public List<Untersuchungstyp> initializeUntersuchungstypen();
 
     public List<Halter> halterGet();
 
