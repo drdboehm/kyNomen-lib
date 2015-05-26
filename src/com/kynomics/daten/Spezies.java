@@ -100,7 +100,9 @@ public class Spezies implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Spezies[ speziesId=" + speziesId + " ]";
+        return "Spezies{" + "speziesId=" + speziesId + ", speziesName=" + speziesName + ", rasseCollection=" + rasseCollection + '}';
     }
+
+   
     
 }

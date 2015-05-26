@@ -175,7 +175,8 @@ public class Milestone implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Milestone[ milestoneId=" + milestoneId + " ]";
+        return "Milestone{" + "milestoneId=" + milestoneId + ", milestoneName=" + milestoneName + ", milestoneAlltime=" + milestoneAlltime + ", milestoneHandsontime=" + milestoneHandsontime + ", milestoneMannumber=" + milestoneMannumber + ", milestoneManhour=" + milestoneManhour + ", milestonecost=" + milestonecost + ", milestonetypId=" + milestonetypId + ", untersuchungstypMilestoneCollection=" + untersuchungstypMilestoneCollection + '}';
     }
+
     
 }

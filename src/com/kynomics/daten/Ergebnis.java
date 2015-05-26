@@ -135,7 +135,9 @@ public class Ergebnis implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Ergebnis[ ergebnisPK=" + ergebnisPK + " ]";
+        return "Ergebnis{" + "ergebnisPK=" + ergebnisPK + ", ergebnisDate=" + ergebnisDate + ", ergebnisDatei=" + ergebnisDatei + ", ergebnisDok=" + ergebnisDok + ", untersuchung=" + untersuchung + ", ergebnistypId=" + ergebnistypId + '}';
     }
+
+   
     
 }

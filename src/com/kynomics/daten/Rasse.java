@@ -113,7 +113,9 @@ public class Rasse implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Rasse[ rasseId=" + rasseId + " ]";
+        return "Rasse{" + "rasseId=" + rasseId + ", rasseName=" + rasseName + ", speziesSpeziesId=" + speziesSpeziesId + ", patientCollection=" + patientCollection + '}';
     }
+
+    
     
 }

@@ -75,7 +75,9 @@ public class UntersuchungstypMilestonePK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.UntersuchungstypMilestonePK[ untersuchungtypId=" + untersuchungtypId + ", milestoneId=" + milestoneId + " ]";
+        return "UntersuchungstypMilestonePK{" + "untersuchungtypId=" + untersuchungtypId + ", milestoneId=" + milestoneId + '}';
     }
+
+    
     
 }

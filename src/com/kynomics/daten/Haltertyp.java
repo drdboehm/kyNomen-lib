@@ -100,7 +100,9 @@ public class Haltertyp implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Haltertyp[ haltertypId=" + haltertypId + " ]";
+        return "Haltertyp{" + "haltertypId=" + haltertypId + ", haltertypName=" + haltertypName + ", halterCollection=" + halterCollection + '}';
     }
+
+    
     
 }

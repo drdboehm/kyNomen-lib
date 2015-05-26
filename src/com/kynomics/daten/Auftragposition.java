@@ -118,7 +118,8 @@ public class Auftragposition implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Auftragposition[ auftragpositionId=" + auftragpositionId + " ]";
+        return "Auftragposition{" + "auftragpositionId=" + auftragpositionId + ", auftragpositionNr=" + auftragpositionNr + ", patientId=" + patientId + ", auftragId=" + auftragId + ", untersuchungId=" + untersuchungId + '}';
     }
-    
+
+   
 }

@@ -99,7 +99,9 @@ public class Auftragtyp implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Auftragtyp[ auftragtypId=" + auftragtypId + " ]";
+        return "Auftragtyp{" + "auftragtypId=" + auftragtypId + ", auftragtypName=" + auftragtypName + ", auftragCollection=" + auftragCollection + '}';
     }
+
+    
     
 }

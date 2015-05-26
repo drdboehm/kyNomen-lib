@@ -162,7 +162,9 @@ public class Untersuchung implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Untersuchung[ untersuchungId=" + untersuchungId + " ]";
+        return "Untersuchung{" + "untersuchungId=" + untersuchungId + ", untersuchungName=" + untersuchungName + ", untersuchungDauer=" + untersuchungDauer + ", untersuchungPreis=" + untersuchungPreis + ", auftragpositionCollection=" + auftragpositionCollection + ", untersuchungstypUntersuchungtypId=" + untersuchungstypUntersuchungtypId + ", ergebnisCollection=" + ergebnisCollection + ", edited=" + edited + '}';
     }
+
+    
     
 }

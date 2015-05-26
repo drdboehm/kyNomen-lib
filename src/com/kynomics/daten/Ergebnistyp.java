@@ -102,7 +102,9 @@ public class Ergebnistyp implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Ergebnistyp[ ergebnistypId=" + ergebnistypId + " ]";
+        return "Ergebnistyp{" + "ergebnistypId=" + ergebnistypId + ", ergebnistypName=" + ergebnistypName + ", ergebnisCollection=" + ergebnisCollection + '}';
     }
+
+    
     
 }

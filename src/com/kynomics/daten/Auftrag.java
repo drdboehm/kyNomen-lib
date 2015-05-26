@@ -151,7 +151,9 @@ public class Auftrag implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Auftrag[ auftragId=" + auftragId + " ]";
+        return "Auftrag{" + "auftragId=" + auftragId + ", auftragStart=" + auftragStart + ", auftragEnde=" + auftragEnde + ", auftragText=" + auftragText + ", auftragstypId=" + auftragstypId + ", halterId=" + halterId + ", auftragpositionCollection=" + auftragpositionCollection + '}';
     }
+
+   
     
 }

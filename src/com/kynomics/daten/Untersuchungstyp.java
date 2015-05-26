@@ -135,7 +135,9 @@ public class Untersuchungstyp implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Untersuchungstyp[ untersuchungtypId=" + untersuchungtypId + " ]";
+        return "Untersuchungstyp{" + "untersuchungtypId=" + untersuchungtypId + ", untersuchungtypName=" + untersuchungtypName + ", untersuchungtypGen=" + untersuchungtypGen + ", untersuchungtypMut=" + untersuchungtypMut + ", untersuchungCollection=" + untersuchungCollection + ", untersuchungstypMilestoneCollection=" + untersuchungstypMilestoneCollection + '}';
     }
+
+    
     
 }

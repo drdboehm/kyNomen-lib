@@ -100,7 +100,9 @@ public class Milestonetyp implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Milestonetyp[ milestonetypId=" + milestonetypId + " ]";
+        return "Milestonetyp{" + "milestonetypId=" + milestonetypId + ", milestonetypName=" + milestonetypName + ", milestoneCollection=" + milestoneCollection + '}';
     }
+
+   
     
 }

@@ -99,7 +99,9 @@ public class Adresstyp implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Adresstyp[ adresstypId=" + adresstypId + " ]";
+        return "Adresstyp{" + "adresstypId=" + adresstypId + ", adresstypName=" + adresstypName + ", halteradresseCollection=" + halteradresseCollection + '}';
     }
+
+    
     
 }
