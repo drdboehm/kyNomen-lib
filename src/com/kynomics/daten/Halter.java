@@ -22,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Halter.findByHalterId", query = "SELECT h FROM Halter h WHERE h.halterId = :halterId"),
     @NamedQuery(name = "Halter.findByHalterName", query = "SELECT h FROM Halter h WHERE h.halterName = :halterName")})
 public class Halter implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +65,12 @@ public class Halter implements Serializable {
     private Haltertyp haltertypId;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "halterHalterId")
     private Collection<Patient> patientCollection;
+
+    /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    public boolean edited;
 
     public Halter() {
     }
@@ -135,6 +143,14 @@ public class Halter implements Serializable {
         this.patientCollection = patientCollection;
     }
 
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -157,7 +173,9 @@ public class Halter implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kynomics.daten.Halter[ halterId=" + halterId + " ]";
+        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", auftragCollection=" + auftragCollection + ", halteradresseCollection=" + halteradresseCollection + ", haltertypId=" + haltertypId + ", patientCollection=" + patientCollection + ", edited=" + edited + '}';
     }
-    
+
+   
+
 }
