@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -76,6 +77,14 @@ public class Patient implements Serializable {
     @ManyToOne(optional = false)
     private Halter halterHalterId;
 
+    
+    
+    /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    public boolean edited;
+    
     public Patient() {
     }
 
@@ -162,6 +171,14 @@ public class Patient implements Serializable {
 
     public void setHalterHalterId(Halter halterHalterId) {
         this.halterHalterId = halterHalterId;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     @Override

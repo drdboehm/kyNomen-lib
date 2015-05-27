@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Untersuchungstyp.findByUntersuchungtypGen", query = "SELECT u FROM Untersuchungstyp u WHERE u.untersuchungtypGen = :untersuchungtypGen"),
     @NamedQuery(name = "Untersuchungstyp.findByUntersuchungtypMut", query = "SELECT u FROM Untersuchungstyp u WHERE u.untersuchungtypMut = :untersuchungtypMut")})
 public class Untersuchungstyp implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +57,13 @@ public class Untersuchungstyp implements Serializable {
     private Collection<Untersuchung> untersuchungCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
     private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
+
+    /**
+     * this is a transient boolean flag indicating whether the object was edited
+     * and should be again persisted
+     */
+    @Transient
+    public boolean edited;
 
     public Untersuchungstyp() {
     }
@@ -113,6 +122,14 @@ public class Untersuchungstyp implements Serializable {
         this.untersuchungstypMilestoneCollection = untersuchungstypMilestoneCollection;
     }
 
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -138,6 +155,4 @@ public class Untersuchungstyp implements Serializable {
         return "Untersuchungstyp{" + "untersuchungtypId=" + untersuchungtypId + ", untersuchungtypName=" + untersuchungtypName + ", untersuchungtypGen=" + untersuchungtypGen + ", untersuchungtypMut=" + untersuchungtypMut + ", untersuchungCollection=" + untersuchungCollection + ", untersuchungstypMilestoneCollection=" + untersuchungstypMilestoneCollection + '}';
     }
 
-    
-    
 }

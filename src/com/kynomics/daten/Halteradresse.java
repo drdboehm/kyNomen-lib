@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -65,6 +66,13 @@ public class Halteradresse implements Serializable {
     @ManyToOne
     private Halter halterId;
 
+    
+    /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    public boolean edited;
+    
     public Halteradresse() {
     }
 
@@ -141,6 +149,14 @@ public class Halteradresse implements Serializable {
         int hash = 0;
         hash += (halteradresseId != null ? halteradresseId.hashCode() : 0);
         return hash;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     @Override

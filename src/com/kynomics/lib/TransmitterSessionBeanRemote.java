@@ -21,6 +21,7 @@ import com.kynomics.daten.finder.Patiententreffer;
 import com.kynomics.daten.finder.SuchkriterienHalter;
 import com.kynomics.daten.finder.SuchkriterienHalteradresse;
 import com.kynomics.daten.finder.SuchkriterienPatient;
+import com.kynomics.daten.wrapper.UTypMileStoneWrapper;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -33,6 +34,8 @@ public interface TransmitterSessionBeanRemote {
 
     public boolean storeEjb(HalterAdresssenPatientWrapper hapw);
 
+    public boolean storeEjb(UTypMileStoneWrapper wrapper);
+
     public List<Haltertyp> initializeHalterTypen();
 
     public List<Adresstyp> initializeAdressTypen();
@@ -40,9 +43,9 @@ public interface TransmitterSessionBeanRemote {
     public List<Spezies> initializeSpeziesTypen();
 
     public List<Rasse> initializeRasseTypen();
-    
+
     public List<Untersuchungstyp> initializeUntersuchungstypen();
-    
+
     public List<Milestonetyp> initializeMilestoneTypen();
 
     public List<Halter> halterGet();
@@ -58,7 +61,7 @@ public interface TransmitterSessionBeanRemote {
     public List<HalteradresseTreffer> sucheHalterAdresse(SuchkriterienHalteradresse suchKr);
 
     public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
-    
+
     public <T extends Object> T deleteById(Class<T> entityClass, Integer primaryKey);
 
 }
