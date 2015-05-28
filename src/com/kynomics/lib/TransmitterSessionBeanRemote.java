@@ -10,6 +10,7 @@ import com.kynomics.daten.Halter;
 import com.kynomics.daten.wrapper.HalterAdresssenPatientWrapper;
 import com.kynomics.daten.Halteradresse;
 import com.kynomics.daten.Haltertyp;
+import com.kynomics.daten.Milestone;
 import com.kynomics.daten.Milestonetyp;
 import com.kynomics.daten.Patient;
 import com.kynomics.daten.Rasse;
@@ -47,6 +48,8 @@ public interface TransmitterSessionBeanRemote {
     public List<Untersuchungstyp> initializeUntersuchungstypen();
 
     public List<Milestonetyp> initializeMilestoneTypen();
+    
+    public List<Milestone> initializeAllMilestones();
 
     public List<Halter> halterGet();
 

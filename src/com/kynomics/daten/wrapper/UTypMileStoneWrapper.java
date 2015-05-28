@@ -5,8 +5,8 @@
  */
 package com.kynomics.daten.wrapper;
 
+import com.kynomics.daten.Milestone;
 import com.kynomics.daten.Untersuchungstyp;
-import com.kynomics.daten.UntersuchungstypMilestone;
 import java.io.Serializable;
 
 /**
@@ -17,11 +17,11 @@ public class UTypMileStoneWrapper implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Untersuchungstyp  uTyp;
-    private UntersuchungstypMilestone uTypMilestone; 
+    private Milestone milestone; 
 
-    public UTypMileStoneWrapper(Untersuchungstyp uTyp, UntersuchungstypMilestone uTypMilestone) {
+    public UTypMileStoneWrapper(Untersuchungstyp uTyp, Milestone milestone) {
         this.uTyp = uTyp;
-        this.uTypMilestone = uTypMilestone;
+        this.milestone = milestone;
     }
 
     public Untersuchungstyp getuTyp() {
@@ -32,12 +32,14 @@ public class UTypMileStoneWrapper implements Serializable {
         this.uTyp = uTyp;
     }
 
-    public UntersuchungstypMilestone getuTypMilestone() {
-        return uTypMilestone;
+    public Milestone getMilestone() {
+        return milestone;
     }
 
-    public void setuTypMilestone(UntersuchungstypMilestone uTypMilestone) {
-        this.uTypMilestone = uTypMilestone;
+    public void setMilestone(Milestone milestone) {
+        this.milestone = milestone;
     }
+
+    
 
 }

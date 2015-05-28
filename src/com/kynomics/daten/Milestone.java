@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -68,14 +70,21 @@ public class Milestone implements Serializable {
     @Column(name = "milestonecost", length = 45)
     private String milestonecost;
     @JoinColumn(name = "milestonetyp_id", referencedColumnName = "milestonetyp_id", nullable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Milestonetyp milestonetypId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "milestone")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "milestone")
     private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
 
     public Milestone() {
     }
 
+     /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    public boolean edited;
+
+    
     public Milestone(Integer milestoneId) {
         this.milestoneId = milestoneId;
     }
@@ -151,6 +160,14 @@ public class Milestone implements Serializable {
 
     public void setUntersuchungstypMilestoneCollection(Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection) {
         this.untersuchungstypMilestoneCollection = untersuchungstypMilestoneCollection;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     @Override

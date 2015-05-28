@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,9 +54,9 @@ public class Untersuchungstyp implements Serializable {
     @Size(max = 45)
     @Column(name = "untersuchungtyp_mut", length = 45)
     private String untersuchungtypMut;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstypUntersuchungtypId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchungstypUntersuchungtypId")
     private Collection<Untersuchung> untersuchungCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
     private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
 
     /**

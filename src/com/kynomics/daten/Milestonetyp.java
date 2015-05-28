@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class Milestonetyp implements Serializable {
     @Size(max = 45)
     @Column(name = "milestonetyp_name", length = 45)
     private String milestonetypName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "milestonetypId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "milestonetypId")
     private Collection<Milestone> milestoneCollection;
 
     public Milestonetyp() {
