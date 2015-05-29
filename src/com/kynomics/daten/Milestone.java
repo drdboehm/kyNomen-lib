@@ -70,7 +70,7 @@ public class Milestone implements Serializable {
     @Column(name = "milestonecost", length = 45)
     private String milestonecost;
     @JoinColumn(name = "milestonetyp_id", referencedColumnName = "milestonetyp_id", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(optional = false)
     private Milestonetyp milestonetypId;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "milestone")
     private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;

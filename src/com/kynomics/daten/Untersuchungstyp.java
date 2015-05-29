@@ -54,9 +54,9 @@ public class Untersuchungstyp implements Serializable {
     @Size(max = 45)
     @Column(name = "untersuchungtyp_mut", length = 45)
     private String untersuchungtypMut;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchungstypUntersuchungtypId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstypUntersuchungtypId")
     private Collection<Untersuchung> untersuchungCollection;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
     private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
 
     /**

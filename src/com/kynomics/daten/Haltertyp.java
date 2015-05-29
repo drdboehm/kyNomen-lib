@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class Haltertyp implements Serializable {
     @Size(max = 100)
     @Column(name = "haltertyp_name", length = 100)
     private String haltertypName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "haltertypId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "haltertypId")
     private Collection<Halter> halterCollection;
 
     public Haltertyp() {

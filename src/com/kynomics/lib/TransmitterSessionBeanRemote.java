@@ -18,10 +18,14 @@ import com.kynomics.daten.Spezies;
 import com.kynomics.daten.Untersuchungstyp;
 import com.kynomics.daten.finder.HalteradresseTreffer;
 import com.kynomics.daten.finder.Haltertreffer;
+import com.kynomics.daten.finder.MilestoneTreffer;
 import com.kynomics.daten.finder.Patiententreffer;
 import com.kynomics.daten.finder.SuchkriterienHalter;
 import com.kynomics.daten.finder.SuchkriterienHalteradresse;
+import com.kynomics.daten.finder.SuchkriterienMilestone;
 import com.kynomics.daten.finder.SuchkriterienPatient;
+import com.kynomics.daten.finder.SuchkriterienUTyp;
+import com.kynomics.daten.finder.UTypTreffer;
 import com.kynomics.daten.wrapper.UTypMileStoneWrapper;
 import java.util.List;
 import javax.ejb.Remote;
@@ -48,7 +52,7 @@ public interface TransmitterSessionBeanRemote {
     public List<Untersuchungstyp> initializeUntersuchungstypen();
 
     public List<Milestonetyp> initializeMilestoneTypen();
-    
+
     public List<Milestone> initializeAllMilestones();
 
     public List<Halter> halterGet();
@@ -62,6 +66,10 @@ public interface TransmitterSessionBeanRemote {
     public List<Patiententreffer> suchePatient(SuchkriterienPatient kriterien);
 
     public List<HalteradresseTreffer> sucheHalterAdresse(SuchkriterienHalteradresse suchKr);
+
+    public List<UTypTreffer> sucheUntersuchungstyp(SuchkriterienUTyp suchKr);
+    
+    public List<MilestoneTreffer> sucheMilestone(SuchkriterienMilestone suchKr);
 
     public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
 

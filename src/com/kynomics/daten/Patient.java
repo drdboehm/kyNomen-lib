@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -68,7 +69,7 @@ public class Patient implements Serializable {
     @Size(max = 100)
     @Column(name = "patient_tatoonr", length = 100)
     private String patientTatoonr;
-    @OneToMany(mappedBy = "patientId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "patientId")
     private Collection<Auftragposition> auftragpositionCollection;
     @JoinColumn(name = "rasse_rasse_id", referencedColumnName = "rasse_id", nullable = false)
     @ManyToOne(optional = false)

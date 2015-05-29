@@ -54,12 +54,12 @@ public class Untersuchung implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "untersuchung_preis", precision = 22)
     private Double untersuchungPreis;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchungId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungId")
     private Collection<Auftragposition> auftragpositionCollection;
     @JoinColumn(name = "untersuchungstyp_untersuchungtyp_id", referencedColumnName = "untersuchungtyp_id", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(optional = false)
     private Untersuchungstyp untersuchungstypUntersuchungtypId;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchung")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchung")
     private Collection<Ergebnis> ergebnisCollection;
 
     /**
