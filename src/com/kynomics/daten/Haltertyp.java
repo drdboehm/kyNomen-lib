@@ -101,8 +101,10 @@ public class Haltertyp implements Serializable {
 
     @Override
     public String toString() {
-        return "Haltertyp{" + "haltertypId=" + haltertypId + ", haltertypName=" + haltertypName + ", halterCollection=" + halterCollection + '}';
+        return "Haltertyp{" + "haltertypId=" + haltertypId + ", haltertypName=" + haltertypName + '}';
     }
+
+   
 
     
     

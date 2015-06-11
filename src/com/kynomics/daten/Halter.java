@@ -74,6 +74,9 @@ public class Halter implements Serializable {
      */
     @Transient
     public boolean edited;
+    
+    @Transient
+    public boolean selected;
 
     public Halter() {
     }
@@ -154,6 +157,14 @@ public class Halter implements Serializable {
         this.edited = edited;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -176,6 +187,10 @@ public class Halter implements Serializable {
 
     @Override
     public String toString() {
-        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", auftragCollection=" + auftragCollection + ", halteradresseCollection=" + halteradresseCollection + ", haltertypId=" + haltertypId + ", patientCollection=" + patientCollection + ", edited=" + edited + '}';
+        return "Halter{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", haltertypId=" + haltertypId + ", edited=" + edited + ", selected=" + selected + '}';
     }
+
+   
+
+   
 }

@@ -84,7 +84,13 @@ public class Patient implements Serializable {
      * this is a transient boolean flag indicating whether the object was edited and should be again persisted
      */
     @Transient
-    public boolean edited;
+    private boolean edited;
+    
+    /**
+     * this is a transient boolean flag indicating whether the object was selected 
+     */
+     @Transient
+    private boolean selected;
     
     public Patient() {
     }
@@ -182,6 +188,14 @@ public class Patient implements Serializable {
         this.edited = edited;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -204,8 +218,9 @@ public class Patient implements Serializable {
 
     @Override
     public String toString() {
-        return "Patient{" + "patientId=" + patientId + ", patientName=" + patientName + ", patientRuf=" + patientRuf + ", patientChip=" + patientChip + ", patientGeb=" + patientGeb + ", patientZuchtbuchnr=" + patientZuchtbuchnr + ", patientTatoonr=" + patientTatoonr + ", auftragpositionCollection=" + auftragpositionCollection + ", rasseRasseId=" + rasseRasseId + ", halterHalterId=" + halterHalterId + '}';
+        return "Patient{" + "patientId=" + patientId + ", patientName=" + patientName + ", patientRuf=" + patientRuf + ", patientChip=" + patientChip + ", patientGeb=" + patientGeb + ", patientZuchtbuchnr=" + patientZuchtbuchnr + ", patientTatoonr=" + patientTatoonr + ", rasseRasseId=" + rasseRasseId + ", halterHalterId=" + halterHalterId + ", edited=" + edited + ", selected=" + selected + '}';
     }
 
+    
     
 }

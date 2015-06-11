@@ -73,6 +73,12 @@ public class Halteradresse implements Serializable {
     @Transient
     public boolean edited;
     
+     /**
+     * this is a transient boolean flag indicating whether the object was selected in the List of the View-Controller 
+     */
+    @Transient
+    public boolean selected;
+    
     public Halteradresse() {
     }
 
@@ -159,6 +165,14 @@ public class Halteradresse implements Serializable {
         this.edited = edited;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -174,8 +188,9 @@ public class Halteradresse implements Serializable {
 
     @Override
     public String toString() {
-        return "Halteradresse{" + "halteradresseId=" + halteradresseId + ", halterPlz=" + halterPlz + ", halterOrt=" + halterOrt + ", halterStrasse=" + halterStrasse + ", halterTel=" + halterTel + ", email=" + email + ", adresstypId=" + adresstypId + ", halterId=" + halterId + '}';
+        return "Halteradresse{" + "halteradresseId=" + halteradresseId + ", halterPlz=" + halterPlz + ", halterOrt=" + halterOrt + ", halterStrasse=" + halterStrasse + ", halterTel=" + halterTel + ", email=" + email + ", adresstypId=" + adresstypId + ", halterId=" + halterId + ", edited=" + edited + ", selected=" + selected + '}';
     }
+
 
    
     
