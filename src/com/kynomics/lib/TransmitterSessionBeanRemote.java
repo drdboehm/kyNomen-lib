@@ -26,6 +26,7 @@ import com.kynomics.daten.finder.SuchkriterienMilestone;
 import com.kynomics.daten.finder.SuchkriterienPatient;
 import com.kynomics.daten.finder.SuchkriterienUTyp;
 import com.kynomics.daten.finder.UTypTreffer;
+import com.kynomics.daten.wrapper.SpeziesRasseWrapper;
 import com.kynomics.daten.wrapper.UTypMileStoneWrapper;
 import java.util.List;
 import javax.ejb.Remote;
@@ -40,6 +41,8 @@ public interface TransmitterSessionBeanRemote {
     public boolean storeEjb(HalterAdresssenPatientWrapper hapw);
 
     public boolean storeEjb(UTypMileStoneWrapper wrapper);
+    
+    public boolean storeEjb(SpeziesRasseWrapper wrapper);
 
     public List<Haltertyp> initializeHalterTypen();
 

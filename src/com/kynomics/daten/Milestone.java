@@ -46,6 +46,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Milestone.findByMilestoneManhour", query = "SELECT m FROM Milestone m WHERE m.milestoneManhour = :milestoneManhour"),
     @NamedQuery(name = "Milestone.findByMilestonecost", query = "SELECT m FROM Milestone m WHERE m.milestonecost = :milestonecost")})
 public class Milestone implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,13 +79,20 @@ public class Milestone implements Serializable {
     public Milestone() {
     }
 
-     /**
-     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+    /**
+     * this is a transient boolean flag indicating whether the object was edited
+     * and should be again persisted
      */
     @Transient
     public boolean edited;
 
-    
+    /**
+     * this is a transient boolean flag indicating whether the object was
+     * selected in any list and should be again persisted
+     */
+    @Transient
+    public boolean selected;
+
     public Milestone(Integer milestoneId) {
         this.milestoneId = milestoneId;
     }
@@ -170,6 +178,14 @@ public class Milestone implements Serializable {
         this.edited = edited;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -192,8 +208,7 @@ public class Milestone implements Serializable {
 
     @Override
     public String toString() {
-        return "Milestone{" + "milestoneId=" + milestoneId + ", milestoneName=" + milestoneName + ", milestoneAlltime=" + milestoneAlltime + ", milestoneHandsontime=" + milestoneHandsontime + ", milestoneMannumber=" + milestoneMannumber + ", milestoneManhour=" + milestoneManhour + ", milestonecost=" + milestonecost + ", milestonetypId=" + milestonetypId + ", untersuchungstypMilestoneCollection=" + untersuchungstypMilestoneCollection + '}';
+        return "Milestone{" + "milestoneId=" + milestoneId + ", milestoneName=" + milestoneName + ", milestoneAlltime=" + milestoneAlltime + ", milestoneHandsontime=" + milestoneHandsontime + ", milestoneMannumber=" + milestoneMannumber + ", milestoneManhour=" + milestoneManhour + ", milestonecost=" + milestonecost + ", milestonetypId=" + milestonetypId + ", edited=" + edited + ", selected=" + selected + '}';
     }
 
-    
 }

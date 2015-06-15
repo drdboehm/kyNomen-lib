@@ -101,8 +101,10 @@ public class Milestonetyp implements Serializable {
 
     @Override
     public String toString() {
-        return "Milestonetyp{" + "milestonetypId=" + milestonetypId + ", milestonetypName=" + milestonetypName + ", milestoneCollection=" + milestoneCollection + '}';
+        return "Milestonetyp{" + "milestonetypId=" + milestonetypId + ", milestonetypName=" + milestonetypName + '}';
     }
+
+   
 
    
     

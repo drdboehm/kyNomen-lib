@@ -54,9 +54,9 @@ public class Untersuchungstyp implements Serializable {
     @Size(max = 45)
     @Column(name = "untersuchungtyp_mut", length = 45)
     private String untersuchungtypMut;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstypUntersuchungtypId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchungstypUntersuchungtypId")
     private Collection<Untersuchung> untersuchungCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "untersuchungstyp")
     private Collection<UntersuchungstypMilestone> untersuchungstypMilestoneCollection;
 
     /**
@@ -65,6 +65,14 @@ public class Untersuchungstyp implements Serializable {
      */
     @Transient
     public boolean edited;
+
+    /**
+     * this is a transient boolean flag indicating whether the object was selected 
+     * in any list
+     * and should be again persisted
+     */
+    @Transient
+    public boolean selected;
 
     public Untersuchungstyp() {
     }
@@ -131,6 +139,14 @@ public class Untersuchungstyp implements Serializable {
         this.edited = edited;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -153,7 +169,8 @@ public class Untersuchungstyp implements Serializable {
 
     @Override
     public String toString() {
-        return "Untersuchungstyp{" + "untersuchungtypId=" + untersuchungtypId + ", untersuchungtypName=" + untersuchungtypName + ", untersuchungtypGen=" + untersuchungtypGen + ", untersuchungtypMut=" + untersuchungtypMut + ", untersuchungCollection=" + untersuchungCollection + ", untersuchungstypMilestoneCollection=" + untersuchungstypMilestoneCollection + '}';
+        return "Untersuchungstyp{" + "untersuchungtypId=" + untersuchungtypId + ", untersuchungtypName=" + untersuchungtypName + ", untersuchungtypGen=" + untersuchungtypGen + ", untersuchungtypMut=" + untersuchungtypMut + ", edited=" + edited + ", selected=" + selected + '}';
     }
 
+   
 }

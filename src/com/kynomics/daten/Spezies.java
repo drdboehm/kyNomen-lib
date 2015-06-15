@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class Spezies implements Serializable {
     @Size(max = 45)
     @Column(name = "spezies_name", length = 45)
     private String speziesName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "speziesSpeziesId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "speziesSpeziesId")
     private Collection<Rasse> rasseCollection;
 
     public Spezies() {
@@ -100,9 +101,10 @@ public class Spezies implements Serializable {
 
     @Override
     public String toString() {
-        return "Spezies{" + "speziesId=" + speziesId + ", speziesName=" + speziesName + ", rasseCollection=" + rasseCollection + '}';
+        return "Spezies{" + "speziesId=" + speziesId + ", speziesName=" + speziesName + '}';
     }
 
+  
    
     
 }

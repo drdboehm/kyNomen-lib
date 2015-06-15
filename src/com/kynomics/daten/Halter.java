@@ -62,6 +62,7 @@ public class Halter implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "halterId")
 
     private Collection<Halteradresse> halteradresseCollection;
+    
     @JoinColumn(name = "haltertyp_id", referencedColumnName = "haltertyp_id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Haltertyp haltertypId;
