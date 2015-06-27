@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -54,6 +55,19 @@ public class Ergebnis implements Serializable {
     @ManyToOne(optional = false)
     private Ergebnistyp ergebnistypId;
 
+    
+     /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    private boolean edited;
+    
+     /**
+     * this is a transient boolean flag indicating whether the object was selected in the List of the View-Controller 
+     */
+    @Transient
+    private boolean selected;
+    
     public Ergebnis() {
     }
 
@@ -111,6 +125,22 @@ public class Ergebnis implements Serializable {
 
     public void setErgebnistypId(Ergebnistyp ergebnistypId) {
         this.ergebnistypId = ergebnistypId;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     @Override

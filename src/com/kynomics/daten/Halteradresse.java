@@ -71,13 +71,13 @@ public class Halteradresse implements Serializable {
      * this is a transient boolean flag indicating whether the object was edited and should be again persisted
      */
     @Transient
-    public boolean edited;
+    private boolean edited;
     
      /**
      * this is a transient boolean flag indicating whether the object was selected in the List of the View-Controller 
      */
     @Transient
-    public boolean selected;
+    private boolean selected;
     
     public Halteradresse() {
     }

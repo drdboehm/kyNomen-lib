@@ -68,6 +68,12 @@ public class Untersuchung implements Serializable {
     @Transient
     public boolean edited;
     
+      /**
+     * this is a transient boolean flag indicating whether the object was selected 
+     */
+    @Transient
+    public boolean selected;
+    
     public Untersuchung() {
     }
 
@@ -161,10 +167,20 @@ public class Untersuchung implements Serializable {
         return true;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public String toString() {
-        return "Untersuchung{" + "untersuchungId=" + untersuchungId + ", untersuchungName=" + untersuchungName + ", untersuchungDauer=" + untersuchungDauer + ", untersuchungPreis=" + untersuchungPreis + ", auftragpositionCollection=" + auftragpositionCollection + ", untersuchungstypUntersuchungtypId=" + untersuchungstypUntersuchungtypId + ", ergebnisCollection=" + ergebnisCollection + ", edited=" + edited + '}';
+        return "Untersuchung{" + "untersuchungId=" + untersuchungId + ", untersuchungName=" + untersuchungName + ", untersuchungDauer=" + untersuchungDauer + ", untersuchungPreis=" + untersuchungPreis + ", untersuchungstypUntersuchungtypId=" + untersuchungstypUntersuchungtypId + ", edited=" + edited + ", selected=" + selected + '}';
     }
+
+    
 
     
     

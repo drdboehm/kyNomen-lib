@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -49,6 +50,18 @@ public class Auftragposition implements Serializable {
     @ManyToOne(optional = false)
     private Untersuchung untersuchungId;
 
+     /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    private boolean edited;
+    
+     /**
+     * this is a transient boolean flag indicating whether the object was selected in the List of the View-Controller 
+     */
+    @Transient
+    private boolean selected;
+    
     public Auftragposition() {
     }
 
@@ -96,6 +109,22 @@ public class Auftragposition implements Serializable {
         this.untersuchungId = untersuchungId;
     }
 
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -118,8 +147,10 @@ public class Auftragposition implements Serializable {
 
     @Override
     public String toString() {
-        return "Auftragposition{" + "auftragpositionId=" + auftragpositionId + ", auftragpositionNr=" + auftragpositionNr + ", patientId=" + patientId + ", auftragId=" + auftragId + ", untersuchungId=" + untersuchungId + '}';
+        return "Auftragposition{" + "auftragpositionId=" + auftragpositionId + ", auftragpositionNr=" + auftragpositionNr + ", patientId=" + patientId + ", auftragId=" + auftragId + ", untersuchungId=" + untersuchungId + ", edited=" + edited + ", selected=" + selected + '}';
     }
+
+   
 
    
 }

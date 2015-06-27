@@ -84,14 +84,14 @@ public class Milestone implements Serializable {
      * and should be again persisted
      */
     @Transient
-    public boolean edited;
+    private boolean edited;
 
     /**
      * this is a transient boolean flag indicating whether the object was
      * selected in any list and should be again persisted
      */
     @Transient
-    public boolean selected;
+    private boolean selected;
 
     public Milestone(Integer milestoneId) {
         this.milestoneId = milestoneId;

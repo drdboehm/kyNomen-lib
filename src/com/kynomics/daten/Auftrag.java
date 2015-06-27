@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -65,6 +66,19 @@ public class Auftrag implements Serializable {
     @OneToMany(mappedBy = "auftragId")
     private Collection<Auftragposition> auftragpositionCollection;
 
+     /**
+     * this is a transient boolean flag indicating whether the object was edited and should be again persisted
+     */
+    @Transient
+    private boolean edited;
+    
+     /**
+     * this is a transient boolean flag indicating whether the object was selected in the List of the View-Controller 
+     */
+    @Transient
+    private boolean selected;
+    
+    
     public Auftrag() {
     }
 
@@ -129,6 +143,22 @@ public class Auftrag implements Serializable {
         this.auftragpositionCollection = auftragpositionCollection;
     }
 
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -151,9 +181,8 @@ public class Auftrag implements Serializable {
 
     @Override
     public String toString() {
-        return "Auftrag{" + "auftragId=" + auftragId + ", auftragStart=" + auftragStart + ", auftragEnde=" + auftragEnde + ", auftragText=" + auftragText + ", auftragstypId=" + auftragstypId + ", halterId=" + halterId + ", auftragpositionCollection=" + auftragpositionCollection + '}';
+        return "Auftrag{" + "auftragId=" + auftragId + ", auftragStart=" + auftragStart + ", auftragEnde=" + auftragEnde + ", auftragText=" + auftragText + ", auftragstypId=" + auftragstypId + ", halterId=" + halterId + ", edited=" + edited + ", selected=" + selected + '}';
     }
 
-   
     
 }

@@ -6,6 +6,7 @@
 package com.kynomics.lib;
 
 import com.kynomics.daten.Adresstyp;
+import com.kynomics.daten.Auftragtyp;
 import com.kynomics.daten.Halter;
 import com.kynomics.daten.wrapper.HalterAdresssenPatientWrapper;
 import com.kynomics.daten.Halteradresse;
@@ -16,6 +17,7 @@ import com.kynomics.daten.Patient;
 import com.kynomics.daten.Rasse;
 import com.kynomics.daten.Spezies;
 import com.kynomics.daten.Untersuchungstyp;
+import com.kynomics.daten.UntersuchungstypMilestone;
 import com.kynomics.daten.finder.HalteradresseTreffer;
 import com.kynomics.daten.finder.Haltertreffer;
 import com.kynomics.daten.finder.MilestoneTreffer;
@@ -25,9 +27,12 @@ import com.kynomics.daten.finder.SuchkriterienHalteradresse;
 import com.kynomics.daten.finder.SuchkriterienMilestone;
 import com.kynomics.daten.finder.SuchkriterienPatient;
 import com.kynomics.daten.finder.SuchkriterienUTyp;
+import com.kynomics.daten.finder.SuchkriterienUntersuchung;
 import com.kynomics.daten.finder.UTypTreffer;
+import com.kynomics.daten.finder.Untersuchungtreffer;
 import com.kynomics.daten.wrapper.SpeziesRasseWrapper;
 import com.kynomics.daten.wrapper.UTypMileStoneWrapper;
+import com.kynomics.daten.wrapper.UntersuchungWrapper;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -41,8 +46,12 @@ public interface TransmitterSessionBeanRemote {
     public boolean storeEjb(HalterAdresssenPatientWrapper hapw);
 
     public boolean storeEjb(UTypMileStoneWrapper wrapper);
-    
+
     public boolean storeEjb(SpeziesRasseWrapper wrapper);
+
+    public boolean storeEjb(UntersuchungstypMilestone wrapper);
+    
+    public boolean storeEjb(UntersuchungWrapper wrapper);
 
     public List<Haltertyp> initializeHalterTypen();
 
@@ -56,7 +65,9 @@ public interface TransmitterSessionBeanRemote {
 
     public List<Milestonetyp> initializeMilestoneTypen();
 
-    public List<Milestone> initializeAllMilestones();
+    public List<Milestone> initializeMilestones();
+
+    public List<Auftragtyp> initializeAuftragtypen();
 
     public List<Halter> halterGet();
 
@@ -71,8 +82,10 @@ public interface TransmitterSessionBeanRemote {
     public List<HalteradresseTreffer> sucheHalterAdresse(SuchkriterienHalteradresse suchKr);
 
     public List<UTypTreffer> sucheUntersuchungstyp(SuchkriterienUTyp suchKr);
-    
+
     public List<MilestoneTreffer> sucheMilestone(SuchkriterienMilestone suchKr);
+    
+    public List<Untersuchungtreffer> sucheUntersuchung(SuchkriterienUntersuchung suchKr);
 
     public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
 

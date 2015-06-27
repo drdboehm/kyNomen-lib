@@ -74,10 +74,10 @@ public class Halter implements Serializable {
      * this is a transient boolean flag indicating whether the object was edited and should be again persisted
      */
     @Transient
-    public boolean edited;
+    private boolean edited;
     
     @Transient
-    public boolean selected;
+    private boolean selected;
 
     public Halter() {
     }
