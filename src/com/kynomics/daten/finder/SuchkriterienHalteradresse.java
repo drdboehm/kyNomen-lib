@@ -25,6 +25,13 @@ public class SuchkriterienHalteradresse extends HalteradresseTreffer implements 
     @Override
     public String toString() {
         WhereKlausel where = new WhereKlausel();
+         if (super.getAdresstypId().getAdresstypId() != null) {
+            where.or("t.adresstypId = " + super.getAdresstypId().getAdresstypId());
+        }
+        else {
+//            where.or("t.haltertypId = (1,2,3,4,5)");
+        }
+        
         if (super.getHalteradresseId() != null) {
             where.or("ha.halteradresseId = " + super.getHalteradresseId());
         }

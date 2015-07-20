@@ -5,6 +5,7 @@
  */
 package com.kynomics.daten.finder;
 
+import com.kynomics.daten.Haltertyp;
 import java.io.Serializable;
 
 /**
@@ -16,18 +17,26 @@ public class Haltertreffer implements Serializable {
     public Integer halterId;
     public String halterName;
     private String halterBemerkung;
+    private Haltertyp haltertypId;
 
-    public Haltertreffer(Integer halterId, String halterName, String halterBemerkung) {
+    
+    
+    public Haltertreffer() {
+    }
+    
+     /*
+     only set the constructor with the unique Id attribute, the details can be later 
+    identified by this Id
+     */
+    public Haltertreffer(Integer halterId) {
         this.halterId = halterId;
-        this.halterName = halterName;
-        this.halterBemerkung = halterBemerkung;
-        
     }
 
     @Override
     public String toString() {
-        return "Haltertreffer{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + '}';
+        return "Haltertreffer{" + "halterId=" + halterId + ", halterName=" + halterName + ", halterBemerkung=" + halterBemerkung + ", haltertypId=" + haltertypId + '}';
     }
+
 
     public Integer getHalterId() {
         return halterId;
@@ -51,6 +60,14 @@ public class Haltertreffer implements Serializable {
 
     public void setHalterBemerkung(String halterBemerkung) {
         this.halterBemerkung = halterBemerkung;
+    }
+
+    public Haltertyp getHaltertypId() {
+        return haltertypId;
+    }
+
+    public void setHaltertypId(Haltertyp haltertypId) {
+        this.haltertypId = haltertypId;
     }
 
     

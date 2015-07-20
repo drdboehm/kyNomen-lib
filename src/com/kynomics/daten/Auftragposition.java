@@ -63,6 +63,7 @@ public class Auftragposition implements Serializable {
     private boolean selected;
     
     public Auftragposition() {
+        patientId = new Patient();
     }
 
     public Auftragposition(Integer auftragpositionId) {

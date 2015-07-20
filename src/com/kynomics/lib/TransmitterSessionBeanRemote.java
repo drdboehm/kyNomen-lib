@@ -18,10 +18,12 @@ import com.kynomics.daten.Rasse;
 import com.kynomics.daten.Spezies;
 import com.kynomics.daten.Untersuchungstyp;
 import com.kynomics.daten.UntersuchungstypMilestone;
+import com.kynomics.daten.finder.Auftragtreffer;
 import com.kynomics.daten.finder.HalteradresseTreffer;
 import com.kynomics.daten.finder.Haltertreffer;
 import com.kynomics.daten.finder.MilestoneTreffer;
 import com.kynomics.daten.finder.Patiententreffer;
+import com.kynomics.daten.finder.SuchkriterienAuftrag;
 import com.kynomics.daten.finder.SuchkriterienHalter;
 import com.kynomics.daten.finder.SuchkriterienHalteradresse;
 import com.kynomics.daten.finder.SuchkriterienMilestone;
@@ -30,6 +32,7 @@ import com.kynomics.daten.finder.SuchkriterienUTyp;
 import com.kynomics.daten.finder.SuchkriterienUntersuchung;
 import com.kynomics.daten.finder.UTypTreffer;
 import com.kynomics.daten.finder.Untersuchungtreffer;
+import com.kynomics.daten.wrapper.AuftragAuftragPositionenWrapper;
 import com.kynomics.daten.wrapper.SpeziesRasseWrapper;
 import com.kynomics.daten.wrapper.UTypMileStoneWrapper;
 import com.kynomics.daten.wrapper.UntersuchungWrapper;
@@ -50,8 +53,10 @@ public interface TransmitterSessionBeanRemote {
     public boolean storeEjb(SpeziesRasseWrapper wrapper);
 
     public boolean storeEjb(UntersuchungstypMilestone wrapper);
-    
+
     public boolean storeEjb(UntersuchungWrapper wrapper);
+
+    public boolean storeEjb(AuftragAuftragPositionenWrapper wrapper);
 
     public List<Haltertyp> initializeHalterTypen();
 
@@ -84,8 +89,10 @@ public interface TransmitterSessionBeanRemote {
     public List<UTypTreffer> sucheUntersuchungstyp(SuchkriterienUTyp suchKr);
 
     public List<MilestoneTreffer> sucheMilestone(SuchkriterienMilestone suchKr);
-    
+
     public List<Untersuchungtreffer> sucheUntersuchung(SuchkriterienUntersuchung suchKr);
+    
+    public List<Auftragtreffer> sucheAuftrag(SuchkriterienAuftrag suchKr); 
 
     public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
 

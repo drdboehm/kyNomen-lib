@@ -46,34 +46,44 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Patient.findByPatientTatoonr", query = "SELECT p FROM Patient p WHERE p.patientTatoonr = :patientTatoonr")})
 public class Patient implements Serializable {
     private static final long serialVersionUID = 1L;
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "patient_id", nullable = false)
     private Integer patientId;
+    
     @Size(max = 100)
     @Column(name = "patient_name", length = 100)
     private String patientName;
+    
     @Size(max = 100)
     @Column(name = "patient_ruf", length = 100)
     private String patientRuf;
+    
     @Size(max = 100)
     @Column(name = "patient_chip", length = 100)
     private String patientChip;
+    
     @Column(name = "patient_geb")
     @Temporal(TemporalType.DATE)
     private Date patientGeb;
+    
     @Size(max = 100)
     @Column(name = "patient_zuchtbuchnr", length = 100)
     private String patientZuchtbuchnr;
+    
     @Size(max = 100)
     @Column(name = "patient_tatoonr", length = 100)
     private String patientTatoonr;
+    
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "patientId")
     private Collection<Auftragposition> auftragpositionCollection;
+   
     @JoinColumn(name = "rasse_rasse_id", referencedColumnName = "rasse_id", nullable = false)
     @ManyToOne(optional = false)
     private Rasse rasseRasseId;
+   
     @JoinColumn(name = "halter_halter_id", referencedColumnName = "halter_id", nullable = false)
     @ManyToOne(optional = false)
     private Halter halterHalterId;

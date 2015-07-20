@@ -6,28 +6,12 @@
 package com.kynomics.daten.finder;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
  * @author teilnehmer
  */
-public class SuchkriterienHalter implements Serializable {
-
-    private Integer halterId;
-    private String teilVonHalterName;
-    private String teilDerBeschreibung;
-    
-
-    public SuchkriterienHalter(Integer halterId, String teilVonHalterName, String teilDerBeschreibung) {
-        this.halterId = halterId;
-        if (teilVonHalterName.length() != 0) {
-            this.teilVonHalterName = teilVonHalterName;
-        }
-        if (teilDerBeschreibung.length() != 0) {
-            this.teilDerBeschreibung = teilDerBeschreibung;
-        }
-    }
+public class SuchkriterienHalter extends Haltertreffer implements Serializable {
 
     /*
      default constructor - let attributes be null in case no serach entry
@@ -35,35 +19,33 @@ public class SuchkriterienHalter implements Serializable {
     public SuchkriterienHalter() {
     }
 
-    public void setHalterId(Integer halterId) {
-        this.halterId = halterId;
-    }
-
-    public void setTeilVonHalterName(String teilVonHalterName) {
-        this.teilVonHalterName = teilVonHalterName;
-    }
-
-    public void setTeilDerBeschreibung(String teilDerBeschreibung) {
-        this.teilDerBeschreibung = teilDerBeschreibung;
-    }
-
-   
+    /*  
+     the getters ans setters are in the family class
+     */
     @Override
     public String toString() {
         WhereKlausel where = new WhereKlausel();
-        if (halterId != null) {
-            where.or("h.halterId = " + halterId);
+//        System.out.println("super.getHaltertypId() = " + super.getHaltertypId());
+        if (super.getHaltertypId().getHaltertypId() != null) {
+            where.or("t.haltertypId = " + super.getHaltertypId().getHaltertypId());
+        }
+        else {
+//            where.or("t.haltertypId = (1,2,3,4,5)");
         }
 
-        if (teilVonHalterName != null && teilVonHalterName.length() != 0) {
+        if (super.halterId != null) {
+            where.or("h.halterId = " + super.halterId);
+        }
+
+        if (super.getHalterName() != null && super.getHalterName().length() != 0) {
             where.or("UPPER(h.halterName) LIKE '%"
-                    + teilVonHalterName.toUpperCase() + "%'");
+                    + super.getHalterName().toUpperCase() + "%'");
         }
-        if (teilDerBeschreibung != null && teilDerBeschreibung.length() != 0) {
+        if (super.getHalterBemerkung() != null && super.getHalterBemerkung().length() != 0) {
             where.or("UPPER(h.halterBemerkung) LIKE '%"
-                    + teilDerBeschreibung.toUpperCase() + "%'");
+                    + super.getHalterBemerkung().toUpperCase() + "%'");
         }
-        
+
         return where.toString();
     }
 }

@@ -56,15 +56,15 @@ public class Halter implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "halter_bemerkung", length = 2147483647)
     private String halterBemerkung;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "halterId")
+    
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "halterId")
     private Collection<Auftrag> auftragCollection;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "halterId")
-
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "halterId")
     private Collection<Halteradresse> halteradresseCollection;
     
     @JoinColumn(name = "haltertyp_id", referencedColumnName = "haltertyp_id", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     private Haltertyp haltertypId;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "halterHalterId")
@@ -115,7 +115,7 @@ public class Halter implements Serializable {
         this.halterBemerkung = halterBemerkung;
     }
 
-    @XmlTransient
+//    @XmlTransient
     public Collection<Auftrag> getAuftragCollection() {
         return auftragCollection;
     }
@@ -124,7 +124,7 @@ public class Halter implements Serializable {
         this.auftragCollection = auftragCollection;
     }
 
-    @XmlTransient
+//    @XmlTransient
     public Collection<Halteradresse> getHalteradresseCollection() {
         return halteradresseCollection;
     }
@@ -141,7 +141,7 @@ public class Halter implements Serializable {
         this.haltertypId = haltertypId;
     }
 
-    @XmlTransient
+//    @XmlTransient
     public Collection<Patient> getPatientCollection() {
         return patientCollection;
     }
