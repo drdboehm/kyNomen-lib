@@ -44,7 +44,7 @@ public class Haltertyp implements Serializable {
     @Size(max = 100)
     @Column(name = "haltertyp_name", length = 100)
     private String haltertypName;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "haltertypId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "haltertypId")
     private Collection<Halter> halterCollection;
 
     public Haltertyp() {

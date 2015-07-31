@@ -18,12 +18,14 @@ import com.kynomics.daten.Rasse;
 import com.kynomics.daten.Spezies;
 import com.kynomics.daten.Untersuchungstyp;
 import com.kynomics.daten.UntersuchungstypMilestone;
+import com.kynomics.daten.finder.AuftragpositionTreffer;
 import com.kynomics.daten.finder.Auftragtreffer;
 import com.kynomics.daten.finder.HalteradresseTreffer;
 import com.kynomics.daten.finder.Haltertreffer;
 import com.kynomics.daten.finder.MilestoneTreffer;
 import com.kynomics.daten.finder.Patiententreffer;
 import com.kynomics.daten.finder.SuchkriterienAuftrag;
+import com.kynomics.daten.finder.SuchkriterienAuftragposition;
 import com.kynomics.daten.finder.SuchkriterienHalter;
 import com.kynomics.daten.finder.SuchkriterienHalteradresse;
 import com.kynomics.daten.finder.SuchkriterienMilestone;
@@ -97,5 +99,7 @@ public interface TransmitterSessionBeanRemote {
     public <T extends Object> T findById(Class<T> entityClass, Integer primaryKey);
 
     public <T extends Object> T deleteById(Class<T> entityClass, Integer primaryKey);
+
+    public List<AuftragpositionTreffer> sucheAuftragposition(SuchkriterienAuftragposition suchkriterienAuftragposition);
 
 }

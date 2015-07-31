@@ -20,6 +20,7 @@ public class UntersuchungstypMilestonePK implements Serializable {
     @Basic(optional = false)
     @Column(name = "untersuchungtyp_id", nullable = false)
     private int untersuchungtypId;
+ 
     @Basic(optional = false)
     @NotNull
     @Column(name = "milestone_id", nullable = false)

@@ -8,6 +8,7 @@ package com.kynomics.daten.wrapper;
 import com.kynomics.daten.Auftrag;
 import com.kynomics.daten.Auftragposition;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -17,12 +18,13 @@ public class AuftragAuftragPositionenWrapper implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Auftrag auftrag;
-    private Auftragposition auftragposition;
+    private List<Auftragposition> auftragpositionenList;
 
-    public AuftragAuftragPositionenWrapper(Auftrag auftrag, Auftragposition auftragposition) {
+    public AuftragAuftragPositionenWrapper(Auftrag auftrag, List<Auftragposition> auftragpositionenList) {
         this.auftrag = auftrag;
-        this.auftragposition = auftragposition;
+        this.auftragpositionenList = auftragpositionenList;
     }
+
 
     public Auftrag getAuftrag() {
         return auftrag;
@@ -32,13 +34,14 @@ public class AuftragAuftragPositionenWrapper implements Serializable {
         this.auftrag = auftrag;
     }
 
-    public Auftragposition getAuftragposition() {
-        return auftragposition;
+    public List<Auftragposition> getAuftragpositionenList() {
+        return auftragpositionenList;
     }
 
-    public void setAuftragposition(Auftragposition auftragposition) {
-        this.auftragposition = auftragposition;
+    public void setAuftragpositionenList(List<Auftragposition> auftragpositionenList) {
+        this.auftragpositionenList = auftragpositionenList;
     }
+
 
    
 

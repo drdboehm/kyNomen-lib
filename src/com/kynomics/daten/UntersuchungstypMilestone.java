@@ -30,13 +30,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UntersuchungstypMilestone.findByMilestoneorderpos", query = "SELECT u FROM UntersuchungstypMilestone u WHERE u.milestoneorderpos = :milestoneorderpos")})
 public class UntersuchungstypMilestone implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected UntersuchungstypMilestonePK untersuchungstypMilestonePK;
+    
     @Column(name = "milestoneorderpos")
     private Integer milestoneorderpos;
+    
     @JoinColumn(name = "untersuchungtyp_id", referencedColumnName = "untersuchungtyp_id", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Untersuchungstyp untersuchungstyp;
+    
     @JoinColumn(name = "milestone_id", referencedColumnName = "milestone_id", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Milestone milestone;

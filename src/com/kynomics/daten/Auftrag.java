@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,7 +64,7 @@ public class Auftrag implements Serializable {
     @JoinColumn(name = "halter_id", referencedColumnName = "halter_id")
     @ManyToOne
     private Halter halterId;
-    @OneToMany(mappedBy = "auftragId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auftragId")
     private Collection<Auftragposition> auftragpositionCollection;
 
      /**

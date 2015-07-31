@@ -30,7 +30,7 @@ public class SuchkriterienAuftrag extends Auftragtreffer implements Serializable
         }
 
         if (super.getAuftragText() != null && super.getAuftragText().length() != 0) {
-            where.or("UPPER(a.AuftragText) LIKE '%"
+            where.or("UPPER(a.auftragText) LIKE '%"
                     + super.getAuftragText().toUpperCase() + "%'");
         }
 

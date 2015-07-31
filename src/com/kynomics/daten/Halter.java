@@ -64,7 +64,7 @@ public class Halter implements Serializable {
     private Collection<Halteradresse> halteradresseCollection;
     
     @JoinColumn(name = "haltertyp_id", referencedColumnName = "haltertyp_id", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, optional = false)
     private Haltertyp haltertypId;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "halterHalterId")
